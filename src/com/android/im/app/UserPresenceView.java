@@ -20,6 +20,7 @@ import com.android.im.IImConnection;
 import com.android.im.R;
 import com.android.im.engine.ImErrorInfo;
 import com.android.im.engine.Presence;
+import com.android.im.plugin.ImpsConfigNames;
 import com.google.android.collect.Lists;
 
 import android.app.Activity;
@@ -37,6 +38,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class UserPresenceView extends LinearLayout {
     private ImageButton mStatusDialogButton;
 
     // views of the popup window
-    EditText mStatusEditor;
+    TextView mStatusBar;
 
     private final SimpleAlertHandler mHandler;
 
@@ -53,7 +55,7 @@ public class UserPresenceView extends LinearLayout {
     private long mProviderId;
     Presence mPresence;
 
-    private String mLastStatusEditText;
+    private String mLastStatusText;
     final List<StatusItem> mStatusItems = Lists.newArrayList();
 
     public UserPresenceView(Context context, AttributeSet attrs) {
@@ -66,33 +68,9 @@ public class UserPresenceView extends LinearLayout {
         super.onFinishInflate();
 
         mStatusDialogButton = (ImageButton)findViewById(R.id.statusDropDownButton);
-        mStatusEditor = (EditText)findViewById(R.id.statusEdit);
-
         mStatusDialogButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 showStatusListDialog();
-            }
-        });
-
-        mStatusEditor.setOnKeyListener(new OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (KeyEvent.ACTION_DOWN == event.getAction()) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_DPAD_CENTER:
-                        case KeyEvent.KEYCODE_ENTER:
-                            updateStatusText();
-                            return true;
-                    }
-                }
-                return false;
-            }
-        });
-
-        mStatusEditor.setOnFocusChangeListener(new View.OnFocusChangeListener(){
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    updateStatusText();
-                }
             }
         });
     }
@@ -139,11 +117,11 @@ public class UserPresenceView extends LinearLayout {
     }
 
     void updateStatusText() {
-        String newStatusText = mStatusEditor.getText().toString();
+        String newStatusText = mStatusBar.getText().toString();
         if (TextUtils.isEmpty(newStatusText)) {
             newStatusText = "";
         }
-        if (!newStatusText.equals(mLastStatusEditText)) {
+        if (!newStatusText.equals(mLastStatusText)) {
             updatePresence(-1, newStatusText);
         }
     }
@@ -173,8 +151,12 @@ public class UserPresenceView extends LinearLayout {
         if (TextUtils.isEmpty(statusText)) {
             statusText = brandingRes.getString(PresenceUtils.getStatusStringRes(status));
         }
-        mStatusEditor.setText(statusText);
-        mLastStatusEditText = statusText;
+        mLastStatusText = statusText;
+
+        if (mStatusBar == null) {
+            mStatusBar = initStatusBar(mProviderId);
+        }
+        mStatusBar.setText(statusText);
 
         // Disable the user to edit the custom status text because
         // the AIM and MSN server don't support it now.
@@ -182,7 +164,45 @@ public class UserPresenceView extends LinearLayout {
         String providerName = provider == null ? null : provider.mName;
         if (Im.ProviderNames.AIM.equals(providerName)
                 || Im.ProviderNames.MSN.equals(providerName)) {
-            mStatusEditor.setFocusable(false);
+            mStatusBar.setFocusable(false);
+        }
+    }
+
+    private TextView initStatusBar(long providerId) {
+        String value = Im.ProviderSettings.getStringValue(
+                            mContext.getContentResolver(), providerId,
+                            ImpsConfigNames.SUPPORT_USER_DEFINED_PRESENCE);
+
+        if ("true".equalsIgnoreCase(value)) {
+            EditText statusEdit = (EditText) findViewById(R.id.statusEdit);
+            statusEdit.setVisibility(View.VISIBLE);
+            statusEdit.setOnKeyListener(new OnKeyListener() {
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (KeyEvent.ACTION_DOWN == event.getAction()) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+                            case KeyEvent.KEYCODE_ENTER:
+                                updateStatusText();
+                                return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
+            statusEdit.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        updateStatusText();
+                    }
+                }
+            });
+
+            return statusEdit;
+        } else {
+            TextView statusView = (TextView) findViewById(R.id.statusView);
+            statusView.setVisibility(View.VISIBLE);
+            return statusView;
         }
     }
 

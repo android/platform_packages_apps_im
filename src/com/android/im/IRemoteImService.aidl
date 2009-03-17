@@ -53,4 +53,9 @@ interface IRemoteImService {
      * Dismiss all notifications for an IM provider.
      */
     void dismissNotifications(long providerId);
+
+    /**
+     * Dismiss notification for the specified chat.
+     */
+    void dismissChatNotification(long providerId, String username);
 }

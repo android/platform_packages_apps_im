@@ -62,8 +62,7 @@
         android:listSelector="@drawable/chat_history_selector"
         android:stackFromBottom="true"
         android:transcriptMode="normal"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarStyle="insideInset" />
+        android:scrollbarAlwaysDrawVerticalTrack="true" />
 
     <LinearLayout android:id="@+id/invitationPanel"
         android:layout_width="fill_parent"
@@ -159,14 +158,15 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:autoText="true"
-            android:capitalize="sentences"
+            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine|textImeMultiLine"
+            android:imeOptions="actionSend|flagNoEnterAction"
+            android:maxLines="4"
             android:maxLength="2000"
-            android:singleLine="true" />
+            android:hint="@string/compose_hint"/>
 
         <Button android:id="@+id/btnSend"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:text="@string/send" />
     </LinearLayout>
 </com.android.im.app.ChatView>

@@ -79,6 +79,8 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     private HashMap<String, Integer> mContactStatusMap
         = new HashMap<String, Integer>();
 
+    private boolean mHasUnreadMessages;
+
     public ChatSessionAdapter(ChatSession adaptee,
             ImConnectionAdapter connection) {
         mAdaptee = adaptee;
@@ -215,7 +217,7 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             getGroupManager().leaveChatGroupAsync((ChatGroup)mAdaptee.getParticipant());
             mContentResolver.delete(mMessageURI, null, null);
         } else {
-            mContentResolver.delete(mMessageURI, NON_CHAT_MESSAGE_SELECTION, null);
+            mContentResolver.delete(mMessageURI, null, null);
         }
         mContentResolver.delete(mChatURI, null, null);
         mStatusBarNotifier.dismissChatNotification(
@@ -278,6 +280,18 @@ public class ChatSessionAdapter extends IChatSession.Stub {
     public void unregisterChatListener(IChatListener listener) {
         if (listener != null) {
             mRemoteListeners.unregister(listener);
+        }
+    }
+
+    public void markAsRead() {
+        if (mHasUnreadMessages) {
+            ContentValues values = new ContentValues(1);
+            values.put(Im.Chats.LAST_UNREAD_MESSAGE, (String) null);
+            mConnection.getContext().getContentResolver().update(mChatURI, values, null, null);
+
+            mStatusBarNotifier.dismissChatNotification(mConnection.getProviderId(), getAddress());
+
+            mHasUnreadMessages = false;
         }
     }
 
@@ -483,10 +497,10 @@ public class ChatSessionAdapter extends IChatSession.Stub {
             }
             mRemoteListeners.finishBroadcast();
 
-            if (N <= 0) {
-                mStatusBarNotifier.notifyChat(mConnection.getProviderId(),
-                        mConnection.getAccountId(), getId(), username, nickname, body);
-            }
+            mStatusBarNotifier.notifyChat(mConnection.getProviderId(),
+                    mConnection.getAccountId(), getId(), username, nickname, body, N > 0);
+
+            mHasUnreadMessages = true;
         }
 
         public void onSendMessageError(ChatSession ses, final Message msg,

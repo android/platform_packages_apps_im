@@ -15,29 +15,23 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"MI"</string>
-    <string name="menu_add_account">"Ajouter un compte"</string>
-    <string name="menu_edit_account">"Modifier le compte"</string>
-    <string name="menu_remove_account">"Supprimer le compte"</string>
-    <string name="menu_sign_out_all">"Se déconnecter de tout"</string>
+    <string name="im_label">"Chat"</string>
     <string name="menu_cancel_signin">"Annuler la connexion"</string>
     <string name="menu_add_contact">"Ajouter un contact"</string>
     <string name="menu_remove_contact">"Supprimer le contact"</string>
     <string name="menu_block_contact">"Bloquer le contact"</string>
-    <string name="menu_view_blocked">"Bloqué"</string>
+    <string name="menu_view_blocked">"Bloqués"</string>
     <string name="menu_view_accounts">"Liste des comptes"</string>
     <string name="menu_settings">"Paramètres"</string>
-    <string name="menu_start_chat">"Commencer une conversation"</string>
-    <string name="menu_group_chat">"Démarrer une conversation de groupe..."</string>
+    <string name="menu_start_chat">"Lancer un chat"</string>
     <string name="menu_sign_out">"Se déconnecter"</string>
     <string name="menu_view_profile">"Afficher le profil"</string>
-    <string name="menu_end_conversation">"Arrêter la conversation"</string>
+    <string name="menu_end_conversation">"Arrêter le chat"</string>
     <string name="menu_view_contact_list">"Liste de contacts"</string>
     <string name="menu_invite_contact">"Inviter..."</string>
-    <string name="menu_switch_chats">"Basculer entre les conversations"</string>
+    <string name="menu_switch_chats">"Changer de chat"</string>
     <string name="menu_insert_smiley">"Insérer un émoticône"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Entrée"</string>
     <string name="confirm">"Confirmer"</string>
     <string name="confirm_delete_contact">"Le contact \"<xliff:g id="USER">%1$s</xliff:g>\" sera supprimé."</string>
@@ -49,28 +43,31 @@
     <string name="no">"Annuler"</string>
     <string name="signed_out_prompt">"Vous avez été déconnecté de <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Vous avez été déconnecté de <xliff:g id="ACCOUNT">%1$s</xliff:g> parce que <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Conversation : sélectionnez un compte"</string>
-    <string name="account_title">"Compte <xliff:g id="ACCOUNT">%1$s</xliff:g> :"</string>
-    <string name="one_conversation">"1 conversation"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> conversations"</string>
     <string name="add_account">"Ajouter un compte <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Conversation - ajouter un compte"</string>
     <string name="label_username">"Nom d\'utilisateur :"</string>
     <string name="label_password">"Mot de passe :"</string>
-    <string name="remember_password">"Mémoriser mon mot de passe."</string>
-    <string name="keep_me_signed_in">"Me connecter automatiquement."</string>
+    <string name="remember_password">"Mémoriser mon mot de passe"</string>
+    <string name="keep_me_signed_in">"Me connecter automatiquement"</string>
     <string name="sign_up">"Vous ne possédez pas de compte ?"</string>
     <string name="check_auto_sign_in">"Cette option vous connecte automatiquement à chaque fois que vous ouvrez cette application. Pour désactiver l\'option, déconnectez-vous, puis décochez la case \"Connexion automatique\"."</string>
     <string name="sign_in">"Se connecter"</string>
-    <string name="signing_in_to">"Se connecter à <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_to">"Connexion à <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Connexion..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Conversations en cours (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> en ligne"</string>
     <string name="subscriptions">"Inviter des amis"</string>
     <string name="unknown_contact">"("<i>"Inconnu"</i>")"</string>
     <string name="empty_contact_group">"Vide"</string>
     <string name="empty_conversation_group">"Aucune conversation"</string>
-    <string name="contacts_picker_title">"Sélectionner les contacts à inviter"</string>
+    <string name="contacts_picker_title">"Sélectionnez les contacts à inviter"</string>
     <string name="contact_filter_hint">"Saisissez le nom du contact à rechercher"</string>
     <string name="empty_contact_list">"Aucun contact trouvé."</string>
     <string name="blocked_list_title">"Contacts bloqués : <xliff:g id="USER">%1$s</xliff:g>"</string>
@@ -83,7 +80,7 @@
     <string name="presence_available">"En ligne"</string>
     <string name="presence_busy">"Occupé"</string>
     <string name="presence_away">"Absent"</string>
-    <string name="presence_idle">"Vide"</string>
+    <string name="presence_idle">"Absent"</string>
     <string name="presence_offline">"Hors ligne"</string>
     <string name="presence_invisible">"Apparaître hors ligne"</string>
     <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"Canal CIR"</string>
     <string name="host_label">"Hôte"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"ID du client"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,38 +97,37 @@
     <string name="save">"Enregistrer"</string>
     <string name="chat_with">"Chatter avec <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Moi"</string>
+    <string name="compose_hint">"Cliquer pour composer"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> est en ligne"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> est absent"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> est occupé"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> est hors ligne"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> a rejoint la conversation"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> a quitté la conversation"</string>
-    <string name="time_stamp">"\"Envoyé à\" hh:mm \"sur\" EEEE"</string>
+    <string name="time_stamp" format="date">"'Date d\'\'envoi : le '<xliff:g id="DATE">EEEE</xliff:g>' à '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>"</string>
     <string name="send">"Envoyer"</string>
     <string name="msg_sent_failed">"Ce message n\'a pas pu être envoyé."</string>
     <string name="disconnected_warning">"Connexion au serveur interrompue. Les messages seront transmis lorsque vous serez de nouveau connecté."</string>
     <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> est hors ligne. Les messages que vous lui envoyez lui seront remis lors de la prochaine connexion de <xliff:g id="USER_1">%1$s</xliff:g>."</string>
     <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> n\'est pas dans votre liste de contacts."</string>
     <string name="select_link_title">"Sélectionner le lien"</string>
-    <string name="empty_chat_list">"Aucune conversation active."</string>
+    <string name="empty_chat_list">"Aucun chat actif."</string>
     <string name="add_contact_title">"Ajouter un contact"</string>
     <string name="input_contact_label">"Adresse e-mail de la personne que vous souhaitez inviter :"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Sélectionnez une liste :"</string>
     <string name="invite_instruction">"Saisissez un nom à ajouter à partir de vos contacts"</string>
     <string name="invite_label">"Envoyer une invitation"</string>
     <string name="setting_title">"Paramètres généraux"</string>
     <string name="hide_offline_contacts">"Masquer les contacts hors ligne"</string>
     <string name="notification_group_title">"Paramètres des notifications"</string>
-    <string name="notification_enabled_title">"Notifications de MI"</string>
-    <string name="notification_enabled_summary">"Signaler la réception d\'un MI dans la barre d\'état"</string>
-    <string name="notification_vibrate_title">"Vibrer"</string>
-    <string name="notification_vibrate_summary">"Vibre également à la réception d\'un MI"</string>
+    <string name="notification_enabled_title">"Notifications de chat"</string>
+    <string name="notification_enabled_summary">"Signaler la réception d\'un chat dans la barre d\'état"</string>
+    <string name="notification_vibrate_title">"Vibreur"</string>
+    <string name="notification_vibrate_summary">"Vibre également à la réception d\'un chat"</string>
     <string name="notification_sound_title">"Son"</string>
-    <string name="notification_sound_summary">"Déclencher la sonnerie lors de la réception d\'un MI"</string>
+    <string name="notification_sound_summary">"Déclencher la sonnerie lors de la réception d\'un chat"</string>
     <string name="notification_ringtone_title">"Sélectionner une sonnerie"</string>
-    <string name="invitation_title">"Invitation"</string>
-    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> vous a invité à rejoindre une conversation de groupe."</string>
+    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> vous a invité à rejoindre un chat en groupe."</string>
     <string name="invitation_sent_prompt">"L\'invitation a été envoyé à <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Accepter"</string>
     <string name="decline_invitation">"Refuser"</string>
@@ -142,23 +137,22 @@
     <string name="approve_subscription_error">"Impossible d\'approuver l\'inscription de <xliff:g id="USER">%1$s</xliff:g>. Veuillez réessayer ultérieurement."</string>
     <string name="decline_subscription_error">"Impossible de refuser l\'inscription de <xliff:g id="USER">%1$s</xliff:g>. Veuillez réessayer ultérieurement."</string>
     <string name="newMessages_label">"Nouveaux messages de <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
-    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> conversations non lues"</string>
+    <string name="num_unread_chats">"<xliff:g id="NUMBER">%1$d</xliff:g> chats non lus"</string>
     <string name="subscription_notify_text">"Nouvelle invitation de <xliff:g id="USER">%s</xliff:g>"</string>
-    <string name="notify_groupchat_label">"Invitation à une conversation de groupe"</string>
-    <string name="group_chat_invite_notify_text">"Nouvelle invitation à une conversation de groupe de la part de <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Invitation à un chat en groupe"</string>
+    <string name="group_chat_invite_notify_text">"Nouvelle invitation à un chat en groupe de la part de <xliff:g id="USER">%s</xliff:g>"</string>
     <string name="add_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" ajouté."</string>
     <string name="delete_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" supprimé."</string>
     <string name="block_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" bloqué."</string>
     <string name="unblock_contact_success">"Contact \"<xliff:g id="USER">%1$s</xliff:g>\" débloqué."</string>
-    <string name="perm_label">"démarrer le service de MI"</string>
-    <string name="perm_desc">"Permet aux applications de lancer le service de MI via Intent."</string>
+    <string name="perm_label">"démarrer le service de chat"</string>
+    <string name="perm_desc">"Permet aux applications de lancer le service de chat via Intent."</string>
     <string name="error">"Avertissement"</string>
     <string name="login_service_failed">"Connexion au service <xliff:g id="SERVICE">%1$s</xliff:g> impossible. Veuillez réessayer ultérieurement."\n"(Détails : <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"La liste n\'a pas été ajoutée."</string>
     <string name="block_contact_failed">"Le contact n\'a pas été bloqué."</string>
     <string name="unblock_contact_failed">"Le contact n\'a pas été débloqué."</string>
     <string name="select_contact">"Veuillez d\'abord sélectionner un contact."</string>
-    <string name="select_chat_session">"Veuillez sélectionner une session de conversation."</string>
     <string name="disconnected">"Déconnecté !"\n</string>
     <string name="service_error">"Erreur du service !"</string>
     <string name="load_contact_list_failed">"La liste de contact n\'a pas pu être chargée."</string>
@@ -181,7 +175,7 @@
     <string name="session_expired">"La session a expiré. Veuillez vous reconnecter."</string>
     <string name="forced_logout">"vous vous êtes connecté depuis un autre client."</string>
     <string name="already_logged_in">"vous êtes déjà connecté depuis un autre client."</string>
-    <string name="msisdn_error">"Désolé, impossible de lire le numéro de téléphone de votre carte SIM. Veuillez contacter votre opérateur pour obtenir de l\'aide."</string>
+    <string name="msisdn_error">"Impossible de lire le numéro de téléphone de votre carte SIM. Veuillez contacter votre opérateur pour obtenir de l\'aide."</string>
     <string name="not_signed_in">"Vous n\'êtes pas connecté actuellement."</string>
     <string name="general_error">"Code d\'erreur <xliff:g id="CODE">%1$d</xliff:g>"</string>
   <string-array name="default_smiley_names">
@@ -190,8 +184,8 @@
     <item>"Clin d\'oeil"</item>
     <item>"Tire la langue"</item>
     <item>"Surpris"</item>
-    <item>"Bisous"</item>
-    <item>"Crier"</item>
+    <item>"Bisou"</item>
+    <item>"Hurle"</item>
     <item>"Cool"</item>
     <item>"Argent"</item>
     <item>"Embarrassé"</item>
@@ -200,7 +194,7 @@
     <item>"Indécis"</item>
     <item>"Pleure"</item>
     <item>"Motus et bouche cousue"</item>
-    <item>"Rire"</item>
+    <item>"Rigole"</item>
     <item>"Confus"</item>
   </string-array>
   <string-array name="default_smiley_texts">

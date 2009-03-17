@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"即时消息"</string>
-    <string name="menu_add_account">"添加帐户"</string>
-    <string name="menu_edit_account">"编辑帐户"</string>
-    <string name="menu_remove_account">"删除帐户"</string>
-    <string name="menu_sign_out_all">"全部退出"</string>
     <string name="menu_cancel_signin">"取消登录"</string>
     <string name="menu_add_contact">"添加联系人"</string>
     <string name="menu_remove_contact">"删除联系人"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"帐户列表"</string>
     <string name="menu_settings">"设置"</string>
     <string name="menu_start_chat">"发起聊天"</string>
-    <string name="menu_group_chat">"发起群聊..."</string>
     <string name="menu_sign_out">"退出"</string>
     <string name="menu_view_profile">"查看个人资料"</string>
     <string name="menu_end_conversation">"结束聊天"</string>
@@ -36,8 +31,7 @@
     <string name="menu_invite_contact">"邀请..."</string>
     <string name="menu_switch_chats">"切换聊天"</string>
     <string name="menu_insert_smiley">"插入表情符号"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"“菜单”+"</string>
     <string name="default_input_title">"输入"</string>
     <string name="confirm">"确认"</string>
     <string name="confirm_delete_contact">"联系人“<xliff:g id="USER">%1$s</xliff:g>”会被删除。"</string>
@@ -49,12 +43,7 @@
     <string name="no">"取消"</string>
     <string name="signed_out_prompt">"您已退出<xliff:g id="ACCOUNT">%1$s</xliff:g>。"</string>
     <string name="signed_out_prompt_with_error">"您已退出<xliff:g id="ACCOUNT">%1$s</xliff:g>，原因是<xliff:g id="REASON">%2$s</xliff:g>。"</string>
-    <string name="choose_account_title">"聊天 - 选择帐户"</string>
-    <string name="account_title">"<xliff:g id="ACCOUNT">%1$s</xliff:g>帐户："</string>
-    <string name="one_conversation">"1 个聊天"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> 个聊天"</string>
     <string name="add_account">"添加<xliff:g id="ACCOUNT">%1$s</xliff:g>帐户"</string>
-    <string name="add_account_title">"聊天 - 添加帐户"</string>
     <string name="label_username">"用户名："</string>
     <string name="label_password">"密码："</string>
     <string name="remember_password">"记住我的密码。"</string>
@@ -64,6 +53,14 @@
     <string name="sign_in">"登录"</string>
     <string name="signing_in_to">"登录<xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"正在登录..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"正在进行的聊天数 (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> 人在线"</string>
     <string name="subscriptions">"好友邀请"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"承诺信息速率通道"</string>
     <string name="host_label">"主机"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"客户端 ID"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,13 +97,14 @@
     <string name="save">"保存"</string>
     <string name="chat_with">"与<xliff:g id="USER">%1$s</xliff:g>聊天"</string>
     <string name="me">"我"</string>
+    <string name="compose_hint">"键入内容"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g>在线"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g>离开"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g>正忙"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g>脱机"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g>已加入"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g>已离开"</string>
-    <string name="time_stamp">"“发送时间”hh:mm“位于时区”EEEE"</string>
+    <string name="time_stamp" format="date">"'发送时间：'<xliff:g id="DATE">EEEE</xliff:g><xliff:g id="AMPM">a</xliff:g>' '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>"</string>
     <string name="send">"发送"</string>
     <string name="msg_sent_failed">"该消息无法发送。"</string>
     <string name="disconnected_warning">"与服务器断开连接。消息将在您上线时发送。"</string>
@@ -117,8 +114,7 @@
     <string name="empty_chat_list">"没有正在进行的聊天。"</string>
     <string name="add_contact_title">"添加联系人"</string>
     <string name="input_contact_label">"您要邀请的人的电子邮件地址："</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"选择一个列表："</string>
     <string name="invite_instruction">"键入要从“联系人”添加的名称。"</string>
     <string name="invite_label">"发送邀请"</string>
     <string name="setting_title">"常规设置"</string>
@@ -131,7 +127,6 @@
     <string name="notification_sound_title">"声音"</string>
     <string name="notification_sound_summary">"收到即时消息时伴有响铃"</string>
     <string name="notification_ringtone_title">"选择铃声"</string>
-    <string name="invitation_title">"邀请"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g>邀请您加入群聊。"</string>
     <string name="invitation_sent_prompt">"邀请已发送至<xliff:g id="USER">%1$s</xliff:g>。"</string>
     <string name="accept_invitation">"接受"</string>
@@ -158,7 +153,6 @@
     <string name="block_contact_failed">"联系人未被阻止。"</string>
     <string name="unblock_contact_failed">"联系人未被取消阻止。"</string>
     <string name="select_contact">"请先选择一个联系人。"</string>
-    <string name="select_chat_session">"请选择一个聊天会话。"</string>
     <string name="disconnected">"连接断开！"\n</string>
     <string name="service_error">"服务错误！"</string>
     <string name="load_contact_list_failed">"“联系人”列表未载入。"</string>

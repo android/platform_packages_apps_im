@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"IM"</string>
-    <string name="menu_add_account">"アカウントを追加"</string>
-    <string name="menu_edit_account">"アカウントを編集"</string>
-    <string name="menu_remove_account">"アカウントを削除"</string>
-    <string name="menu_sign_out_all">"すべてログアウト"</string>
     <string name="menu_cancel_signin">"ログインをキャンセル"</string>
     <string name="menu_add_contact">"連絡先を追加"</string>
     <string name="menu_remove_contact">"連絡先を削除"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"アカウントリスト"</string>
     <string name="menu_settings">"設定"</string>
     <string name="menu_start_chat">"チャットを始める"</string>
-    <string name="menu_group_chat">"グループチャットを始めます..."</string>
     <string name="menu_sign_out">"ログアウト"</string>
     <string name="menu_view_profile">"プロフィールを表示"</string>
     <string name="menu_end_conversation">"チャットをやめる"</string>
@@ -36,8 +31,7 @@
     <string name="menu_invite_contact">"招待..."</string>
     <string name="menu_switch_chats">"チャットを切り替え"</string>
     <string name="menu_insert_smiley">"絵文字を挿入"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"入力"</string>
     <string name="confirm">"確認"</string>
     <string name="confirm_delete_contact">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」を削除します。"</string>
@@ -49,25 +43,28 @@
     <string name="no">"キャンセル"</string>
     <string name="signed_out_prompt">"既に<xliff:g id="ACCOUNT">%1$s</xliff:g>をログアウトしています。"</string>
     <string name="signed_out_prompt_with_error">"既に<xliff:g id="ACCOUNT">%1$s</xliff:g>をログアウトしています。理由:<xliff:g id="REASON">%2$s</xliff:g>"</string>
-    <string name="choose_account_title">"チャット-アカウントを選択"</string>
-    <string name="account_title">"<xliff:g id="ACCOUNT">%1$s</xliff:g>アカウント:"</string>
-    <string name="one_conversation">"1件のチャット"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g>件のチャット"</string>
-    <string name="add_account">"<xliff:g id="ACCOUNT">%1$s</xliff:g>アカウントを追加"</string>
-    <string name="add_account_title">"チャット-アカウントを追加"</string>
+    <string name="add_account">"<xliff:g id="ACCOUNT">%1$s</xliff:g>アカウント"</string>
     <string name="label_username">"ユーザー名:"</string>
     <string name="label_password">"パスワード"</string>
     <string name="remember_password">"パスワードを保存する"</string>
-    <string name="keep_me_signed_in">"このアカウントで自動的にログインする"</string>
+    <string name="keep_me_signed_in">"自動ログイン"</string>
     <string name="sign_up">"アカウントがない場合"</string>
-    <string name="check_auto_sign_in">"このオプションをオンにすると、このアプリケーションを開くたびに自動的にこのアカウントでログインします。このオプションをオフにするには、ログアウトして[このアカウントで自動的にログインする]をオフにします。"</string>
+    <string name="check_auto_sign_in">"このオプションをONにするとこのアプリケーションを開くたびに自動的にこのアカウントでログインします。このオプションをOFFにするにはログアウトしてから[自動ログイン]をOFFにしてください。"</string>
     <string name="sign_in">"ログイン"</string>
     <string name="signing_in_to">"<xliff:g id="ACCOUNT">%1$s</xliff:g>にログインしています"</string>
-    <string name="signing_in_wait">"ログイン中..."</string>
+    <string name="signing_in_wait">"ログインしています..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"継続中のチャット (<xliff:g id="NUMBER">%1$d</xliff:g>件)"</string>
     <string name="online_count">"オンライン<xliff:g id="NUMBER">%1$d</xliff:g>人"</string>
     <string name="subscriptions">"友だちの招待"</string>
-    <string name="unknown_contact">"("<i>"不明"</i>")"</string>
+    <string name="unknown_contact">"（"<i>"不明"</i>"）"</string>
     <string name="empty_contact_group">"未登録"</string>
     <string name="empty_conversation_group">"チャットしていません"</string>
     <string name="contacts_picker_title">"招待する連絡先を選択してください"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"CIRチャネル"</string>
     <string name="host_label">"ホスト"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"クライアントID"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,13 +97,14 @@
     <string name="save">"保存"</string>
     <string name="chat_with">"<xliff:g id="USER">%1$s</xliff:g>とチャット"</string>
     <string name="me">"自分"</string>
+    <string name="compose_hint">"メッセージを入力"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g>さんはオンラインです"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g>さんは退席中です"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g>さんは取り込み中です"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g>さんはオフラインです"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g>さんが参加しました"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g>さんが退出しました"</string>
-    <string name="time_stamp">"EEEE \'の\' a hh:mm \'に送信\'"</string>
+    <string name="time_stamp" format="date">"<xliff:g id="DATE">EEEE</xliff:g>' '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>'送信'"</string>
     <string name="send">"送信"</string>
     <string name="msg_sent_failed">"メッセージを送信できませんでした。"</string>
     <string name="disconnected_warning">"サーバーとの接続が失われました。オンラインになり次第メッセージを送信します。"</string>
@@ -117,21 +114,19 @@
     <string name="empty_chat_list">"アクティブなチャットはありません。"</string>
     <string name="add_contact_title">"連絡先を追加"</string>
     <string name="input_contact_label">"招待する人のメールアドレス:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"リストを選択:"</string>
     <string name="invite_instruction">"連絡先から追加する名前を入力してください。"</string>
     <string name="invite_label">"招待状を送る"</string>
     <string name="setting_title">"全般設定"</string>
     <string name="hide_offline_contacts">"オフラインの連絡先を表示しない"</string>
     <string name="notification_group_title">"通知設定"</string>
     <string name="notification_enabled_title">"IM通知"</string>
-    <string name="notification_enabled_summary">"IMが届いたらステータスバーに通知"</string>
-    <string name="notification_vibrate_title">"バイブ"</string>
-    <string name="notification_vibrate_summary">"IMが届いたときもバイブ"</string>
+    <string name="notification_enabled_summary">"IM受信: ステータスバーで通知"</string>
+    <string name="notification_vibrate_title">"バイブレーション"</string>
+    <string name="notification_vibrate_summary">"IM受信: バイブレーションもON"</string>
     <string name="notification_sound_title">"サウンド"</string>
-    <string name="notification_sound_summary">"IMが届いたときも着信音を鳴らす"</string>
+    <string name="notification_sound_summary">"IM受信: 着信音も鳴らす"</string>
     <string name="notification_ringtone_title">"着信音を選択"</string>
-    <string name="invitation_title">"招待"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g>さんからグループチャットに招待されました。"</string>
     <string name="invitation_sent_prompt">"招待状を<xliff:g id="USER">%1$s</xliff:g>さんに送りました。"</string>
     <string name="accept_invitation">"承認"</string>
@@ -151,16 +146,15 @@
     <string name="block_contact_success">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」をブロックしました。"</string>
     <string name="unblock_contact_success">"連絡先「<xliff:g id="USER">%1$s</xliff:g>」のブロックを解除しました。"</string>
     <string name="perm_label">"IMサービスの開始"</string>
-    <string name="perm_desc">"intent経由でアプリケーションからIMサービスを開始できるようにします。"</string>
+    <string name="perm_desc">"intent経由でのIMサービスの開始をアプリケーションに許可します。"</string>
     <string name="error">"注意"</string>
-    <string name="login_service_failed">"<xliff:g id="SERVICE">%1$s</xliff:g>サービスにログインできませんでした。しばらくしてから、もう一度試してください。"\n"(詳細:<xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="login_service_failed">"<xliff:g id="SERVICE">%1$s</xliff:g>サービスにログインできませんでした。しばらくしてからやり直してください。"\n"（詳細:<xliff:g id="DESCRIPTION">%2$s</xliff:g>）"</string>
     <string name="add_list_failed">"リストを追加できませんでした。"</string>
     <string name="block_contact_failed">"連絡先をブロックできませんでした。"</string>
     <string name="unblock_contact_failed">"連絡先のブロックを解除できませんでした。"</string>
     <string name="select_contact">"まず連絡先を選択してください。"</string>
-    <string name="select_chat_session">"チャットセッションを選択してください。"</string>
     <string name="disconnected">"切断されました。"\n</string>
-    <string name="service_error">"サービスエラーです。"</string>
+    <string name="service_error">"サービスエラー"</string>
     <string name="load_contact_list_failed">"連絡先リストをロードできませんでした。"</string>
     <string name="cant_connect_to_server">"サーバーに接続できません。接続を確認してください。"</string>
     <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g>さんは既に連絡先リストに登録されています。"</string>

@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
-    <string name="menu_add_account">"Account toevoegen"</string>
-    <string name="menu_edit_account">"Account bewerken"</string>
-    <string name="menu_remove_account">"Account verwijderen"</string>
-    <string name="menu_sign_out_all">"Overal afmelden"</string>
     <string name="menu_cancel_signin">"Aanmelding annuleren"</string>
     <string name="menu_add_contact">"Contactpersoon toevoegen"</string>
     <string name="menu_remove_contact">"Contactpersoon verwijderen"</string>
@@ -28,16 +24,14 @@
     <string name="menu_view_accounts">"Accountlijst"</string>
     <string name="menu_settings">"Instellingen"</string>
     <string name="menu_start_chat">"Chat starten"</string>
-    <string name="menu_group_chat">"Groepchat starten..."</string>
     <string name="menu_sign_out">"Afmelden"</string>
     <string name="menu_view_profile">"Profiel weergeven"</string>
     <string name="menu_end_conversation">"Chat beëindigen"</string>
-    <string name="menu_view_contact_list">"Lijst met contactpersonen"</string>
+    <string name="menu_view_contact_list">"Lijst met contacten"</string>
     <string name="menu_invite_contact">"Uitnodigen..."</string>
     <string name="menu_switch_chats">"Schakelen tussen chats"</string>
     <string name="menu_insert_smiley">"Smiley invoegen"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Invoer"</string>
     <string name="confirm">"Bevestigen"</string>
     <string name="confirm_delete_contact">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' wordt verwijderd."</string>
@@ -49,12 +43,7 @@
     <string name="no">"Annuleren"</string>
     <string name="signed_out_prompt">"U bent afgemeld bij <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"U bent afgemeld bij <xliff:g id="ACCOUNT">%1$s</xliff:g> vanwege <xliff:g id="REASON">%2$s</xliff:g>"</string>
-    <string name="choose_account_title">"Chatten - Een account selecteren"</string>
-    <string name="account_title">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-account:"</string>
-    <string name="one_conversation">"1 chat"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> chats"</string>
     <string name="add_account">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-account toevoegen"</string>
-    <string name="add_account_title">"Chatten - Een account toevoegen"</string>
     <string name="label_username">"Gebruikersnaam:"</string>
     <string name="label_password">"Wachtwoord:"</string>
     <string name="remember_password">"Mijn wachtwoord onthouden."</string>
@@ -64,17 +53,25 @@
     <string name="sign_in">"Aanmelden"</string>
     <string name="signing_in_to">"Aanmelden bij <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Aanmelden..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Actieve chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Uitnodigingen voor vriendschap"</string>
     <string name="unknown_contact">"("<i>"Onbekend"</i>")"</string>
     <string name="empty_contact_group">"Leeg"</string>
     <string name="empty_conversation_group">"Geen gesprekken"</string>
-    <string name="contacts_picker_title">"Contactpersonen selecteren om uit te nodigen"</string>
+    <string name="contacts_picker_title">"Contacten selecteren om uit te nodigen"</string>
     <string name="contact_filter_hint">"Typ om een contactpersoon te vinden"</string>
-    <string name="empty_contact_list">"Kan geen contactpersonen vinden."</string>
-    <string name="blocked_list_title">"Geblokkeerde contactpersonen - <xliff:g id="USER">%1$s</xliff:g>"</string>
-    <string name="no_blocked_contact">"Geen geblokkeerde contactpersonen."</string>
+    <string name="empty_contact_list">"Kan geen contacten vinden."</string>
+    <string name="blocked_list_title">"Geblokkeerde contacten - <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Geen geblokkeerde contacten."</string>
     <string name="contact_profile_title">"Profiel van contactpersoon"</string>
     <string name="label_status">"Status:"</string>
     <string name="label_client_type">"Type client:"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"CIR-kanaal"</string>
     <string name="host_label">"Host"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"Klant-id"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,28 +97,28 @@
     <string name="save">"Opslaan"</string>
     <string name="chat_with">"Chatten met <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Ik"</string>
+    <string name="compose_hint">"Typ om een bericht te schrijven"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> is online"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> is afwezig"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> is bezet"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> is offline"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> is online gekomen"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> is weggegaan"</string>
-    <string name="time_stamp">"\'Verzonden om\' uu:mm a \'op\' EEEE"</string>
+    <string name="time_stamp" format="date">"'Verzonden om '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' op '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Verzenden"</string>
     <string name="msg_sent_failed">"Dit bericht kan niet worden verzonden."</string>
     <string name="disconnected_warning">"Verbinding met de server is verbroken. Berichten worden verzonden wanneer u online bent."</string>
     <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> is offline. Berichten die u verzendt, worden afgeleverd wanneer <xliff:g id="USER_1">%1$s</xliff:g> online komt."</string>
-    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> staat niet in uw lijst met contactpersonen"</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> staat niet in uw lijst met contacten"</string>
     <string name="select_link_title">"Link selecteren"</string>
     <string name="empty_chat_list">"Geen actieve chats."</string>
     <string name="add_contact_title">"Contactpersoon toevoegen"</string>
     <string name="input_contact_label">"E-mailadres van persoon die u wilt uitnodigen:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
-    <string name="invite_instruction">"Typ een naam om toe te voegen vanuit \'Contactpersonen\'."</string>
+    <string name="choose_list_label">"Een lijst kiezen:"</string>
+    <string name="invite_instruction">"Typ een naam om toe te voegen vanuit \'Contacten\'."</string>
     <string name="invite_label">"Uitnodiging verzenden"</string>
     <string name="setting_title">"Algemene instellingen"</string>
-    <string name="hide_offline_contacts">"Offline contactpersonen verbergen"</string>
+    <string name="hide_offline_contacts">"Offline contacten verbergen"</string>
     <string name="notification_group_title">"Instellingen voor meldingen"</string>
     <string name="notification_enabled_title">"Meldingen voor chatberichten"</string>
     <string name="notification_enabled_summary">"Melding op statusbalk weergeven wanneer een chatbericht wordt ontvangen"</string>
@@ -131,12 +127,11 @@
     <string name="notification_sound_title">"Geluid"</string>
     <string name="notification_sound_summary">"Ook beltoon afspelen wanneer een chatbericht wordt ontvangen"</string>
     <string name="notification_ringtone_title">"Beltoon selecteren"</string>
-    <string name="invitation_title">"Uitnodiging"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> heeft u uitgenodigd deel te nemen aan een groepchat"</string>
     <string name="invitation_sent_prompt">"Er is een uitnodiging verzonden naar <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Accepteren"</string>
     <string name="decline_invitation">"Afwijzen"</string>
-    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> heeft u uitgenodigd voor zijn/haar lijst met contactpersonen."</string>
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> heeft u uitgenodigd voor zijn/haar lijst met contacten."</string>
     <string name="approve_subscription">"Accepteren"</string>
     <string name="decline_subscription">"Afwijzen"</string>
     <string name="approve_subscription_error">"Kan het abonnement van <xliff:g id="USER">%1$s</xliff:g> niet goedkeuren. Probeer het later opnieuw."</string>
@@ -158,14 +153,13 @@
     <string name="block_contact_failed">"Contactpersoon is niet geblokkeerd."</string>
     <string name="unblock_contact_failed">"Contactpersoon is niet gedeblokkeerd."</string>
     <string name="select_contact">"Selecteer eerst een contactpersoon."</string>
-    <string name="select_chat_session">"Selecteer een chatsessie."</string>
     <string name="disconnected">"Verbinding verbroken!"\n</string>
     <string name="service_error">"Servicefout."</string>
-    <string name="load_contact_list_failed">"De lijst met contactpersonen is niet geladen."</string>
+    <string name="load_contact_list_failed">"De lijst met contacten is niet geladen."</string>
     <string name="cant_connect_to_server">"Kan geen verbinding maken met de server. Controleer uw verbinding."</string>
-    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> staat al in uw lijst met contactpersonen."</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> staat al in uw lijst met contacten."</string>
     <string name="contact_blocked">"Contactpersoon \'<xliff:g id="USER">%1$s</xliff:g>\' is geblokkeerd."</string>
-    <string name="contact_not_loaded">"Uw lijst met contactpersonen wordt geladen."</string>
+    <string name="contact_not_loaded">"Uw lijst met contacten wordt geladen."</string>
     <string name="network_error">"Er is een netwerkfout opgetreden."</string>
     <string name="service_not_support">"Deze functionaliteit wordt niet ondersteund door de server."</string>
     <string name="invalid_password">"Het opgegeven wachtwoord is ongeldig."</string>
@@ -208,7 +202,7 @@
     <item>":-("</item>
     <item>";-)"</item>
     <item>":-P"</item>
-    <item>"=-O"</item>
+    <item>"Err:502"</item>
     <item>":-*"</item>
     <item>":O"</item>
     <item>"B-)"</item>

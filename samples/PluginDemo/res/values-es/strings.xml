@@ -35,9 +35,9 @@
     <string name="input_contact_label">"Nombre de pantalla de la persona que quieres añadir:"</string>
     <string name="invite_label">"Añadir amigo"</string>
   <string-array name="smiley_names">
-    <item>"Feliz"</item>
+    <item>"Contento"</item>
     <item>"Triste"</item>
-    <item>"Guiñando"</item>
+    <item>"Guiño"</item>
     <item>"Sacando la lengua"</item>
     <item>"Sorprendido"</item>
     <item>"Besando"</item>

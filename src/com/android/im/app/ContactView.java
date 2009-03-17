@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Handler;
 import android.provider.Im;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -34,11 +33,10 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.graphics.drawable.Drawable;
 
 import com.android.im.R;
 import com.android.im.plugin.BrandingResourceIDs;
@@ -75,79 +73,24 @@ public class ContactView extends LinearLayout {
     static final int COLUMN_LAST_MESSAGE_DATE = 10;
     static final int COLUMN_LAST_MESSAGE = 11;
 
-    private ImageView mPresence;
+    //private ImageView mPresence;
     private TextView mLine1;
     private TextView mLine2;
     private TextView mTimeStamp;
 
-    private Handler mHandler;
-    private boolean mLayoutDirty;
-
     public ContactView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mLayoutDirty = true;
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mPresence = (ImageView) findViewById(R.id.presence);
+        //mPresence = (ImageView) findViewById(R.id.presence);
         mLine1 = (TextView) findViewById(R.id.line1);
         mLine2 = (TextView) findViewById(R.id.line2);
+        mLine2.setCompoundDrawablePadding(5);
         mTimeStamp = (TextView)findViewById(R.id.timestamp);
-
-        mHandler = new Handler();
-    }
-
-    @Override
-    public void setSelected(boolean selected) {
-        super.setSelected(selected);
-        if(selected) {
-            // While layout, the width of children is unknown, we have to start
-            // animation when layout is done.
-            if (mLayoutDirty) {
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        startAnimationNow();
-                    }
-                });
-            } else {
-                startAnimationNow();
-            }
-        } else {
-            mLine2.clearAnimation();
-        }
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        mLayoutDirty = false;
-        super.onLayout(changed, l, t, r, b);
-    }
-
-    @Override
-    public void requestLayout() {
-        super.requestLayout();
-        mLayoutDirty = true;
-    }
-
-    /*package*/ void startAnimationNow() {
-        View parent = (View)mLine2.getParent();
-        int width = mLine2.getWidth();
-
-        int parentWidth = parent.getWidth() - parent.getPaddingLeft()
-                - parent.getPaddingRight();
-        if(width > parentWidth) {
-            int fromXDelta = parentWidth;
-            int toXDelta = - width;
-            int duration = (fromXDelta - toXDelta) * 32;
-            Animation animation = new TranslateAnimation(fromXDelta, toXDelta, 0, 0);
-            animation.setDuration(duration);
-            animation.setRepeatMode(Animation.RESTART);
-            animation.setRepeatCount(Animation.INFINITE);
-            mLine2.startAnimation(animation);
-        }
     }
 
     public void bind(Cursor cursor, String underLineText, boolean scrolling) {
@@ -169,20 +112,21 @@ public class ContactView extends LinearLayout {
         BrandingResources brandingRes = app.getBrandingResource(providerId);
 
         int presence = cursor.getInt(COLUMN_CONTACT_PRESENCE_STATUS);
+        int iconId = 0;
+
         // status icon
 
         if (Im.Contacts.TYPE_GROUP == type) {
-            int iconId = lastMsg == null ? R.drawable.group_chat
-                    : R.drawable.group_chat_new;
-            mPresence.setImageResource(iconId);
+            iconId = lastMsg == null ? R.drawable.group_chat : R.drawable.group_chat_new;
         } else if (hasChat) {
-            int iconId = lastMsg == null ? BrandingResourceIDs.DRAWABLE_READ_CHAT
+            iconId = lastMsg == null ? BrandingResourceIDs.DRAWABLE_READ_CHAT
                     : BrandingResourceIDs.DRAWABLE_UNREAD_CHAT;
-            mPresence.setImageDrawable(brandingRes.getDrawable(iconId));
         } else {
-            int iconId = PresenceUtils.getStatusIconId(presence);
-            mPresence.setImageDrawable(brandingRes.getDrawable(iconId));
+            iconId = PresenceUtils.getStatusIconId(presence);
         }
+
+        //mPresence.setImageDrawable(brandingRes.getDrawable(iconId));
+        Drawable presenceIcon = brandingRes.getDrawable(iconId);
 
         // line1
         CharSequence line1;
@@ -255,10 +199,12 @@ public class ContactView extends LinearLayout {
         }
 
         mLine2.setText(line2);
+        mLine2.setCompoundDrawablesWithIntrinsicBounds(null, null, presenceIcon, null);
+
 
         View contactInfoPanel = findViewById(R.id.contactInfo);
         if (hasChat && showChatMsg) {
-            contactInfoPanel.setBackgroundResource(R.drawable.list_item_im_bubble);
+            contactInfoPanel.setBackgroundResource(R.drawable.bubble);
             mLine1.setTextColor(r.getColor(R.color.chat_contact));
         } else {
             contactInfoPanel.setBackgroundDrawable(null);

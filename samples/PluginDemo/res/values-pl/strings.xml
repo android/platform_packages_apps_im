@@ -19,16 +19,16 @@
     <string name="menu_remove_contact">"Usuń kontakt"</string>
     <string name="menu_block_contact">"Zablokuj"</string>
     <string name="menu_contact_list">"Lista kontaktów"</string>
-    <string name="menu_start_chat">"Wyślij wiadomość"</string>
+    <string name="menu_start_chat">"Wyślij wiadomość przez czat"</string>
     <string name="menu_view_profile">"Informacje o znajomym"</string>
     <string name="menu_end_conversation">"Zakończ rozmowę"</string>
     <string name="menu_switch_chats">"Przełącz czaty"</string>
-    <string name="menu_insert_smiley">"Wstaw emotikony"</string>
+    <string name="menu_insert_smiley">"Wstaw buźkę"</string>
     <string name="sign_up">"Utwórz nowe konto"</string>
     <string name="check_save_password">"Ze względów bezpieczeństwa w przypadku zgubienia lub kradzieży telefonu odwiedź witrynę internetową ze swojego komputera i zmień hasło."</string>
-    <string name="buddy_list_title">"Lista kontaktów — <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="buddy_list_title">"Lista kontaktów – <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
     <string name="label_username">"Nazwa użytkownika:"</string>
-    <string name="ongoing_conversation">"Rozmowy <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="ongoing_conversation">"Rozmowy: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="contact_profile_title">"Informacje kontaktowe"</string>
     <string name="presence_available">"Dostępny"</string>
     <string name="add_contact_title">"Dodaj kontakt"</string>

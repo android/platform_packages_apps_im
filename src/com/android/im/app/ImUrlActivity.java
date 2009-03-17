@@ -44,7 +44,7 @@ public class ImUrlActivity extends Activity {
     private static final int ACCOUNT_ID_COLUMN = 0;
     private static final int ACCOUNT_PW_COLUMN = 1;
 
-    private String mProviderCategory;
+    private String mProviderName;
     private String mToAddress;
 
     private ImApp mApp;
@@ -55,10 +55,7 @@ public class ImUrlActivity extends Activity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (Intent.ACTION_SENDTO.equals(intent.getAction())) {
-            resolveIntent(intent);
-
-            if (!isProviderSupported()) {
-                Log.w(ImApp.LOG_TAG, "<ImUrlActivity>Unsuppported provider:" + mProviderCategory);
+            if (!resolveIntent(intent)) {
                 finish();
                 return;
             }
@@ -81,15 +78,16 @@ public class ImUrlActivity extends Activity {
 
     void handleIntent() {
         ContentResolver cr = getContentResolver();
-        String providername = Im.Provider.getProviderNameForCategory(mProviderCategory);
-        long providerId = Im.Provider.getProviderIdForName(cr, providername);
+        long providerId = Im.Provider.getProviderIdForName(cr, mProviderName);
+        long accountId;
+
         mConn= mApp.getConnection(providerId);
         if (mConn == null) {
             Cursor c = DatabaseUtils.queryAccountsForProvider(cr, ACCOUNT_PROJECTION, providerId);
             if (c == null) {
                 addAccount(providerId);
             } else {
-                long accountId = c.getLong(ACCOUNT_ID_COLUMN);
+                accountId = c.getLong(ACCOUNT_ID_COLUMN);
                 if (c.isNull(ACCOUNT_PW_COLUMN)) {
                     editAccount(accountId);
                 } else {
@@ -99,11 +97,16 @@ public class ImUrlActivity extends Activity {
         } else {
             try {
                 int state = mConn.getState();
+                accountId = mConn.getAccountId();
+
                 if (state < ImConnection.LOGGED_IN) {
-                    signInAccount(mConn.getAccountId());
-                } else if (state == ImConnection.LOGGED_IN
-                        || state == ImConnection.SUSPENDED) {
-                    openChat();
+                    signInAccount(accountId);
+                } else if (state == ImConnection.LOGGED_IN || state == ImConnection.SUSPENDED) {
+                    if (!isValidToAddress()) {
+                        showContactList(accountId);
+                    } else {
+                        openChat(providerId, accountId);
+                    }
                 }
             } catch (RemoteException e) {
                 // Ouch!  Service died!  We'll just disappear.
@@ -138,7 +141,16 @@ public class ImUrlActivity extends Activity {
         startActivity(intent);
     }
 
-    private void openChat() {
+    private void showContactList(long accountId) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Im.Contacts.CONTENT_URI);
+        intent.addCategory(ImApp.IMPS_CATEGORY);
+        intent.putExtra("accountId", accountId);
+
+        startActivity(intent);
+    }
+
+    private void openChat(long provider, long account) {
         try {
             IChatSessionManager manager = mConn.getChatSessionManager();
             IChatSession session = manager.getChatSession(mToAddress);
@@ -146,9 +158,12 @@ public class ImUrlActivity extends Activity {
                 session = manager.createChatSession(mToAddress);
             }
 
-            Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI,
-                    session.getId());
+            Uri data = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, session.getId());
             Intent i = new Intent(Intent.ACTION_VIEW, data);
+            i.putExtra("from", mToAddress);
+            i.putExtra("providerId", provider);
+            i.putExtra("accountId", account);
+            i.addCategory(ImApp.IMPS_CATEGORY);
             startActivity(i);
         } catch (RemoteException e) {
             // Ouch!  Service died!  We'll just disappear.
@@ -156,26 +171,101 @@ public class ImUrlActivity extends Activity {
         }
     }
 
-    private void resolveIntent(Intent intent) {
-        Set<String> categories = intent.getCategories();
-        if (categories != null) {
-            Iterator<String> iter = categories.iterator();
-            if (iter.hasNext()) {
-                mProviderCategory = iter.next();
-            }
-        }
+    private boolean resolveIntent(Intent intent) {
         Uri data = intent.getData();
-        mToAddress = data.getSchemeSpecificPart();
+        String host = data.getHost();
 
         if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)) {
-            log ("mProviderCategory=" + mProviderCategory + ", mToAddress=" + mToAddress);
+            log("resolveIntent: host=" + host);
         }
+
+        if (TextUtils.isEmpty(host)) {
+            Set<String> categories = intent.getCategories();
+            if (categories != null) {
+                Iterator<String> iter = categories.iterator();
+                if (iter.hasNext()) {
+                    String category = iter.next();
+                    String providerName = getProviderNameForCategory(category);
+                    mProviderName = findMatchingProvider(providerName);
+                    if (mProviderName == null) {
+                        Log.w(ImApp.LOG_TAG,
+                                "resolveIntent: IM provider "+ category + " not supported");
+                        return false;
+                    }
+                }
+            }
+            mToAddress = data.getSchemeSpecificPart();
+        } else {
+            mProviderName = findMatchingProvider(host);
+
+            if (mProviderName == null) {
+                Log.w(ImApp.LOG_TAG, "resolveIntent: IM provider "+ host + " not supported");
+                return false;
+            }
+
+            String path = data.getPath();
+
+            if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)) log("resolveIntent: path=" + path);
+
+            if (!TextUtils.isEmpty(path)) {
+                int index;
+                if ((index = path.indexOf('/')) != -1) {
+                    mToAddress = path.substring(index+1);
+                }
+            }
+        }
+
+        if (Log.isLoggable(ImApp.LOG_TAG, Log.DEBUG)) {
+            log("resolveIntent: provider=" + mProviderName + ", to=" + mToAddress);
+        }
+
+        return true;
     }
 
-    private boolean isProviderSupported() {
-        return Im.ProviderCategories.AIM.equals(mProviderCategory)
-                || Im.ProviderCategories.MSN.equals(mProviderCategory)
-                || Im.ProviderCategories.YAHOO.equals(mProviderCategory);
+    private String getProviderNameForCategory(String providerCategory) {
+        if (providerCategory != null) {
+            if (providerCategory.equalsIgnoreCase("com.android.im.category.AIM")) {
+                return Im.ProviderNames.AIM;
+            } else if (providerCategory.equalsIgnoreCase("com.android.im.category.MSN")) {
+                return Im.ProviderNames.MSN;
+            } else if (providerCategory.equalsIgnoreCase("com.android.im.category.YAHOO")) {
+                return Im.ProviderNames.YAHOO;
+            }
+        }
+
+        return null;
+    }
+
+    private String findMatchingProvider(String provider) {
+        if (TextUtils.isEmpty(provider)) {
+            return null;
+        }
+
+        if (Im.ProviderNames.AIM.equalsIgnoreCase(provider)) {
+            return Im.ProviderNames.AIM;
+        }
+
+        if (Im.ProviderNames.MSN.equalsIgnoreCase(provider)) {
+            return Im.ProviderNames.MSN;
+        }
+
+        if (Im.ProviderNames.YAHOO.equalsIgnoreCase(provider)) {
+            return Im.ProviderNames.YAHOO;
+        }
+
+        return null;
+    }
+
+    private boolean isValidToAddress() {
+        if (TextUtils.isEmpty(mToAddress)) {
+            return false;
+        }
+
+        if (mToAddress.indexOf('/') != -1) {
+            return false;
+        }
+
+        return true;
     }
 
     private static void log(String msg) {

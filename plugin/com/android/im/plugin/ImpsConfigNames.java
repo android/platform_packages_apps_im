@@ -119,4 +119,9 @@ public interface ImpsConfigNames extends ImConfigNames {
      * set, the default one will be used.
      */
     public static final String CUSTOM_PASSWORD_DIGEST = "imps.custom-password-digest";
+
+    /**
+     * Determines whether the provider support user-defined presence text.
+     */
+    public static final String SUPPORT_USER_DEFINED_PRESENCE = "imps.support-user-defined-presence";
 }

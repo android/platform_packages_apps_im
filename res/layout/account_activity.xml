@@ -28,12 +28,11 @@
         android:layout_height="wrap_content"/>
 
     <EditText android:id="@+id/edtName"
-        android:autoText="false"
         android:completionThreshold="1"
         android:selectAllOnFocus="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true" />
+        android:inputType="text" />
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,12 +40,10 @@
         android:text="@string/label_password" />
 
     <EditText android:id="@+id/edtPass"
-        android:autoText="false"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:password="true" />
+        android:inputType="textPassword"/>
 
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"

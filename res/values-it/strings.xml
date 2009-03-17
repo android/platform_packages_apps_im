@@ -15,20 +15,15 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="im_label">"IM"</string>
-    <string name="menu_add_account">"Aggiungi account"</string>
-    <string name="menu_edit_account">"Modifica account"</string>
-    <string name="menu_remove_account">"Rimuovi account"</string>
-    <string name="menu_sign_out_all">"Disconnetti tutti"</string>
+    <string name="im_label">"Chat"</string>
     <string name="menu_cancel_signin">"Annulla accesso"</string>
     <string name="menu_add_contact">"Aggiungi contatto"</string>
     <string name="menu_remove_contact">"Elimina contatto"</string>
     <string name="menu_block_contact">"Blocca contatto"</string>
-    <string name="menu_view_blocked">"Bloccato"</string>
+    <string name="menu_view_blocked">"Bloccati"</string>
     <string name="menu_view_accounts">"Elenco account"</string>
     <string name="menu_settings">"Impostazioni"</string>
     <string name="menu_start_chat">"Inizia conversazione"</string>
-    <string name="menu_group_chat">"Inizia conversazione di gruppo..."</string>
     <string name="menu_sign_out">"Disconnetti"</string>
     <string name="menu_view_profile">"Visualizza profilo"</string>
     <string name="menu_end_conversation">"Termina conversazione"</string>
@@ -36,8 +31,7 @@
     <string name="menu_invite_contact">"Invita..."</string>
     <string name="menu_switch_chats">"Cambia conversazione"</string>
     <string name="menu_insert_smiley">"Inserisci smile"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Input"</string>
     <string name="confirm">"Conferma"</string>
     <string name="confirm_delete_contact">"Il contatto \"<xliff:g id="USER">%1$s</xliff:g>\" sarà eliminato."</string>
@@ -49,12 +43,7 @@
     <string name="no">"Annulla"</string>
     <string name="signed_out_prompt">"Utente disconnesso da <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Utente disconnesso da <xliff:g id="ACCOUNT">%1$s</xliff:g>. Causa: <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Chat - Seleziona un account"</string>
-    <string name="account_title">"Account <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 conversazione"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> conversazioni"</string>
     <string name="add_account">"Aggiungi account <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Chat - Aggiungi un account"</string>
     <string name="label_username">"Nome utente:"</string>
     <string name="label_password">"Password:"</string>
     <string name="remember_password">"Memorizza la password."</string>
@@ -64,6 +53,14 @@
     <string name="sign_in">"Accedi"</string>
     <string name="signing_in_to">"Accesso a <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Accesso..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Conversazioni in corso (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Inviti amici"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"Canale CIR"</string>
     <string name="host_label">"Host"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"ID client"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,13 +97,14 @@
     <string name="save">"Salva"</string>
     <string name="chat_with">"Conversazione con <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Io"</string>
+    <string name="compose_hint">"Digita per comporre"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> è online"</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> non è al computer"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> è occupato"</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> è offline"</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> è entrato"</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> è uscito"</string>
-    <string name="time_stamp">"\'Inviato alle\' hh:mm a \'il\' EEEE"</string>
+    <string name="time_stamp" format="date">"'Inviato alle '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' il '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Invia"</string>
     <string name="msg_sent_failed">"Impossibile inviare il messaggio."</string>
     <string name="disconnected_warning">"Connessione al server persa. I messaggi saranno inviati quando verrà ristabilita."</string>
@@ -117,21 +114,19 @@
     <string name="empty_chat_list">"Nessuna conversazione attiva."</string>
     <string name="add_contact_title">"Aggiungi contatto"</string>
     <string name="input_contact_label">"Indirizzo email della persona da invitare:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Selezionare un elenco:"</string>
     <string name="invite_instruction">"Digita un nome da aggiungere dai contatti."</string>
     <string name="invite_label">"Invia invito"</string>
     <string name="setting_title">"Impostazioni generali"</string>
     <string name="hide_offline_contacts">"Nascondi contatti offline"</string>
     <string name="notification_group_title">"Impostazioni notifiche"</string>
-    <string name="notification_enabled_title">"Notifiche IM"</string>
-    <string name="notification_enabled_summary">"Notifica in barra di stato quando arriva msg IM"</string>
+    <string name="notification_enabled_title">"Notifiche chat"</string>
+    <string name="notification_enabled_summary">"Notifica in barra di stato all\'arrivo di un messaggio"</string>
     <string name="notification_vibrate_title">"Vibrazione"</string>
-    <string name="notification_vibrate_summary">"Vibra anche quando arriva msg IM"</string>
+    <string name="notification_vibrate_summary">"Vibra anche all\'arrivo di msg chat"</string>
     <string name="notification_sound_title">"Allarme"</string>
-    <string name="notification_sound_summary">"Usa suoneria anche quando arriva msg IM"</string>
+    <string name="notification_sound_summary">"Usa anche suoneria all\'arrivo di msg chat"</string>
     <string name="notification_ringtone_title">"Seleziona suoneria"</string>
-    <string name="invitation_title">"Invito"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> ti ha invitato a unirti a una conversazione di gruppo."</string>
     <string name="invitation_sent_prompt">"L\'invito è stato inviato a <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Accetto"</string>
@@ -158,7 +153,6 @@
     <string name="block_contact_failed">"Il contatto non è stato bloccato."</string>
     <string name="unblock_contact_failed">"Il contatto non è stato sbloccato."</string>
     <string name="select_contact">"Seleziona prima un contatto."</string>
-    <string name="select_chat_session">"Seleziona una sessione di chat."</string>
     <string name="disconnected">"Disconnessa!"\n</string>
     <string name="service_error">"Errore del servizio."</string>
     <string name="load_contact_list_failed">"Elenco contatti non caricato."</string>
@@ -187,20 +181,20 @@
   <string-array name="default_smiley_names">
     <item>"Felice"</item>
     <item>"Triste"</item>
-    <item>"Fare l\'occhiolino"</item>
-    <item>"Lingua fuori"</item>
+    <item>"Occhiolino"</item>
+    <item>"Linguaccia"</item>
     <item>"Sorpreso"</item>
-    <item>"Baciare"</item>
-    <item>"Urlare"</item>
-    <item>"Favoloso"</item>
-    <item>"Bocca a forma di dollaro"</item>
+    <item>"Bacio"</item>
+    <item>"Urlo"</item>
+    <item>"Fico"</item>
+    <item>"Fatti, non parole"</item>
     <item>"Gaffe"</item>
     <item>"Imbarazzato"</item>
     <item>"Angelo"</item>
     <item>"Indeciso"</item>
-    <item>"Piangere"</item>
+    <item>"Piango"</item>
     <item>"Labbra cucite"</item>
-    <item>"Sorridere"</item>
+    <item>"Risata"</item>
     <item>"Confuso"</item>
   </string-array>
   <string-array name="default_smiley_texts">

@@ -24,6 +24,7 @@ import com.android.im.service.ImServiceConstants;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -112,19 +113,28 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         String username = c.getString(c.getColumnIndexOrThrow(Im.Account.USERNAME));
 
         BrandingResources brandingRes = mApp.getBrandingResource(mProviderId);
-        setTitle(brandingRes.getString(BrandingResourceIDs.STRING_BUDDY_LIST_TITLE, username));
+        setTitle(brandingRes.getString(
+                BrandingResourceIDs.STRING_BUDDY_LIST_TITLE, username));
         getWindow().setFeatureDrawable(Window.FEATURE_LEFT_ICON,
                 brandingRes.getDrawable(BrandingResourceIDs.DRAWABLE_LOGO));
 
-        mSettingMap = new Im.ProviderSettings.QueryMap(getContentResolver(), mProviderId, true, null);
+        mSettingMap = new Im.ProviderSettings.QueryMap(
+                getContentResolver(), mProviderId, true, null);
 
         mApp.callWhenServiceConnected(mHandler, new Runnable(){
             public void run() {
                 if (!mDestroyed) {
                     mApp.dismissNotifications(mProviderId);
                     mConn = mApp.getConnection(mProviderId);
-                    mContactListView.setConnection(mConn);
-                    mContactListView.setHideOfflineContacts(mSettingMap.getHideOfflineContacts());
+                    if (mConn == null) {
+                        Log.e(ImApp.LOG_TAG, "The connection has disappeared!");
+                        clearConnectionStatus();
+                        finish();
+                    } else {
+                        mContactListView.setConnection(mConn);
+                        mContactListView.setHideOfflineContacts(
+                                mSettingMap.getHideOfflineContacts());
+                    }
                 }
             }
         });
@@ -135,7 +145,8 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
         mSettingMap.addObserver(new Observer() {
             public void update(Observable observed, Object updateData) {
                 if (!mDestroyed) {
-                    mContactListView.setHideOfflineContacts(mSettingMap.getHideOfflineContacts());
+                    mContactListView.setHideOfflineContacts(
+                            mSettingMap.getHideOfflineContacts());
                 }
             }
         });
@@ -187,7 +198,9 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
 
             case R.id.menu_sign_out:
                 try {
-                    mConn.logout();
+                    if (mConn != null) {
+                        mConn.logout();
+                    }
                 } catch (RemoteException e) {
                 }
                 return true;
@@ -382,6 +395,17 @@ public class ContactListActivity extends Activity implements View.OnCreateContex
                     .setIcon(android.R.drawable.ic_menu_delete)
                     .setOnMenuItemClickListener(mContextMenuHandler);
         }
+    }
+
+    void clearConnectionStatus() {
+        ContentResolver cr = getContentResolver();
+        ContentValues values = new ContentValues(3);
+
+        values.put(Im.AccountStatus.ACCOUNT, mAccountId);
+        values.put(Im.AccountStatus.PRESENCE_STATUS, Im.Presence.OFFLINE);
+        values.put(Im.AccountStatus.CONNECTION_STATUS, Im.ConnectionStatus.OFFLINE);
+        // insert on the "account_status" uri actually replaces the existing value 
+        cr.insert(Im.AccountStatus.CONTENT_URI, values);
     }
 
     final class ContextMenuHandler implements MenuItem.OnMenuItemClickListener {

@@ -60,4 +60,9 @@ public class ImServiceConstants {
     public static final String EXTRA_INTENT_LIST_NAME = "listName";
 
     public static final String EXTRA_CHECK_AUTO_LOGIN = "autologin";
+
+    /**
+     * USE EXTRA_INTENT_SHOW_MULTIPLE to inform the activity to show multiple chat notifications
+     */
+    public static final String EXTRA_INTENT_SHOW_MULTIPLE = "show_multiple";
 }

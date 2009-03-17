@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
-    <string name="menu_add_account">"Přidat účet"</string>
-    <string name="menu_edit_account">"Upravit účet"</string>
-    <string name="menu_remove_account">"Odstranit účet"</string>
-    <string name="menu_sign_out_all">"Odhlásit se ze všech služeb"</string>
     <string name="menu_cancel_signin">"Zrušit přihlašování"</string>
     <string name="menu_add_contact">"Přidat kontakt"</string>
     <string name="menu_remove_contact">"Smazat kontakt"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Seznam účtů"</string>
     <string name="menu_settings">"Nastavení"</string>
     <string name="menu_start_chat">"Začít chat"</string>
-    <string name="menu_group_chat">"Začít hromadný chat..."</string>
     <string name="menu_sign_out">"Odhlásit se"</string>
     <string name="menu_view_profile">"Zobrazit profil"</string>
     <string name="menu_end_conversation">"Ukončit chat"</string>
@@ -36,8 +31,7 @@
     <string name="menu_invite_contact">"Pozvat..."</string>
     <string name="menu_switch_chats">"Přepnout chat"</string>
     <string name="menu_insert_smiley">"Vložit smajlík"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Vstup"</string>
     <string name="confirm">"Potvrdit"</string>
     <string name="confirm_delete_contact">"Kontakt <xliff:g id="USER">%1$s</xliff:g> bude smazán."</string>
@@ -49,12 +43,7 @@
     <string name="no">"Zrušit"</string>
     <string name="signed_out_prompt">"Byli jste odhlášeni ze služby <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Byli jste odhlášeni ze služby <xliff:g id="ACCOUNT">%1$s</xliff:g>, protože došlo k chybě <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Chat – vybrat účet"</string>
-    <string name="account_title">"Účet <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 chat"</string>
-    <string name="conversations">"Probíhající chaty: <xliff:g id="COUNT">%1$d</xliff:g>"</string>
     <string name="add_account">"Přidat účet <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Chat – přidat účet"</string>
     <string name="label_username">"Uživatelské jméno:"</string>
     <string name="label_password">"Heslo:"</string>
     <string name="remember_password">"Zapamatovat heslo."</string>
@@ -64,6 +53,14 @@
     <string name="sign_in">"Přihlásit se"</string>
     <string name="signing_in_to">"Přihlašování k účtu <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Přihlašování..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Probíhající chaty: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="online_count">"Kontakty online: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
     <string name="subscriptions">"Nabídky přátelství"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"Kanál CIR"</string>
     <string name="host_label">"Hostitel"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"ID klienta"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,13 +97,14 @@
     <string name="save">"Uložit"</string>
     <string name="chat_with">"Chat s uživatelem <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Já"</string>
+    <string name="compose_hint">"Sem zadejte zprávu"</string>
     <string name="contact_online">"uživatel <xliff:g id="USER">%1$s</xliff:g> je online"</string>
     <string name="contact_away">"uživatel <xliff:g id="USER">%1$s</xliff:g> je pryč"</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> je zaneprázdněn"</string>
     <string name="contact_offline">"uživatel <xliff:g id="USER">%1$s</xliff:g> je offline"</string>
     <string name="contact_joined">"Uživatel <xliff:g id="USER">%1$s</xliff:g> se připojil"</string>
     <string name="contact_left">"uživatel <xliff:g id="USER">%1$s</xliff:g> odešel"</string>
-    <string name="time_stamp">"Posláno hh:mm dne EEEE"</string>
+    <string name="time_stamp" format="date">"'Odesláno v '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' dne '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Odeslat"</string>
     <string name="msg_sent_failed">"Zprávu nelze odeslat."</string>
     <string name="disconnected_warning">"Spojení se serverem bylo ztraceno. Zpráva bude odeslána, jakmile se jej podaří obnovit."</string>
@@ -117,8 +114,7 @@
     <string name="empty_chat_list">"Neprobíhá žádný chat."</string>
     <string name="add_contact_title">"Přidat kontakt"</string>
     <string name="input_contact_label">"E-mailová adresa osoby, kterou chcete pozvat:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Zvolte seznam:"</string>
     <string name="invite_instruction">"Zadejte jméno uživatele, kterého chcete přidat z Kontaktů."</string>
     <string name="invite_label">"Odeslat pozvánku"</string>
     <string name="setting_title">"Obecné nastavení"</string>
@@ -131,7 +127,6 @@
     <string name="notification_sound_title">"Zvuk"</string>
     <string name="notification_sound_summary">"Oznámit příchozí chatovou zprávu také vyzváněním"</string>
     <string name="notification_ringtone_title">"Vybrat vyzváněcí tón"</string>
-    <string name="invitation_title">"Pozvánka"</string>
     <string name="invitation_prompt">"Uživatel <xliff:g id="USER">%1$s</xliff:g> vás pozval k hromadnému chatu."</string>
     <string name="invitation_sent_prompt">"Uživateli <xliff:g id="USER">%1$s</xliff:g> byla zaslána pozvánka."</string>
     <string name="accept_invitation">"Přijmout"</string>
@@ -158,7 +153,6 @@
     <string name="block_contact_failed">"Blokování kontaktu se nezdařilo."</string>
     <string name="unblock_contact_failed">"Odblokování kontaktu se nezdařilo."</string>
     <string name="select_contact">"Nejprve zvolte kontakt."</string>
-    <string name="select_chat_session">"Zvolte relaci chatu."</string>
     <string name="disconnected">"Odpojeno"\n</string>
     <string name="service_error">"Chyba služby."</string>
     <string name="load_contact_list_failed">"Seznam kontaktů se nepodařilo načíst."</string>

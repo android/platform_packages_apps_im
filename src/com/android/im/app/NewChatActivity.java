@@ -16,11 +16,16 @@
  */
 package com.android.im.app;
 
+import static com.android.im.service.ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_PROVIDER_ID;
+import static com.android.im.service.ImServiceConstants.EXTRA_INTENT_SHOW_MULTIPLE;
+
 import com.android.im.IChatSession;
 import com.android.im.R;
 import com.android.im.app.adapter.ChatListenerAdapter;
 import com.android.im.plugin.BrandingResourceIDs;
-import com.android.im.service.ImServiceConstants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -36,10 +41,12 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.provider.Im;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
@@ -51,23 +58,6 @@ import java.util.List;
 import java.util.Map;
 
 public class NewChatActivity extends Activity {
-    private static final String GTALK_PACKAGE_NAME_= "com.google.android.talk";
-    private static final String GTALK_CHAT_SCREEN_COMPONENT_NAME =
-        "com.google.android.talk.ChatScreen";
-
-    private static final String[] CHAT_SWITCHER_PROJECTION = {
-            Im.Contacts._ID,
-            Im.Contacts.PROVIDER,
-            Im.Contacts.ACCOUNT,
-            Im.Contacts.USERNAME,
-            Im.Chats.GROUP_CHAT,
-    };
-
-    private static final int CHAT_SWITCHER_ID_COLUMN = 0;
-    private static final int CHAT_SWITCHER_PROVIDER_COLUMN = 1;
-    private static final int CHAT_SWITCHER_ACCOUNT_COLUMN = 2;
-    private static final int CHAT_SWITCHER_USERNAME_COLUMN = 3;
-    private static final int CHAT_SWITCHER_GROUP_COLUMN = 4;
 
     private static final int REQUEST_PICK_CONTACTS = RESULT_FIRST_USER + 1;
 
@@ -77,6 +67,9 @@ public class NewChatActivity extends Activity {
     SimpleAlertHandler mHandler;
 
     private AlertDialog mSmileyDialog;
+    private ChatSwitcher mChatSwitcher;
+
+    private LayoutInflater mInflater;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -88,9 +81,12 @@ public class NewChatActivity extends Activity {
 
         mChatView = (ChatView) findViewById(R.id.chatView);
         mHandler = mChatView.mHandler;
+        mInflater = LayoutInflater.from(this);
+
+        mApp = ImApp.getApplication(this);
+        mChatSwitcher = new ChatSwitcher(this, mHandler, mApp, mInflater, null);
 
         final Handler handler = new Handler();
-        mApp= ImApp.getApplication(this);
         mApp.callWhenServiceConnected(handler, new Runnable() {
             public void run() {
                 resolveIntent(getIntent());
@@ -116,9 +112,20 @@ public class NewChatActivity extends Activity {
     }
 
     void resolveIntent(Intent intent) {
-        if (ImServiceConstants.ACTION_MANAGE_SUBSCRIPTION.equals(intent.getAction())) {
-            long providerId = intent.getLongExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, -1);
-            String from = intent.getStringExtra(ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS);
+        if (requireOpenDashboardOnStart(intent)) {
+            long providerId = intent.getLongExtra(EXTRA_INTENT_PROVIDER_ID, -1L);
+            final long accountId = intent.getLongExtra(EXTRA_INTENT_ACCOUNT_ID, -1L);
+            if (providerId == -1L || accountId == -1L) {
+                finish();
+            } else {
+                mChatSwitcher.open();
+            }
+            return;
+        }
+
+        if (ACTION_MANAGE_SUBSCRIPTION.equals(intent.getAction())) {
+            long providerId = intent.getLongExtra(EXTRA_INTENT_PROVIDER_ID, -1);
+            String from = intent.getStringExtra(EXTRA_INTENT_FROM_ADDRESS);
             if ((providerId == -1) || (from == null)) {
                 finish();
             } else {
@@ -191,8 +198,12 @@ public class NewChatActivity extends Activity {
                 return true;
 
             case R.id.menu_switch_chats:
-                Dashboard.openDashboard(this, mChatView.getAccountId(),
-                        mChatView.getUserName());
+                if (mChatSwitcher.isOpen()) {
+                    mChatSwitcher.close();
+                } else {
+                    mChatSwitcher.open();
+                }
+
                 return true;
 
             case R.id.menu_invite_contact:
@@ -225,17 +236,7 @@ public class NewChatActivity extends Activity {
             case R.id.menu_quick_switch_7:
             case R.id.menu_quick_switch_8:
             case R.id.menu_quick_switch_9:
-                ContentResolver cr = getContentResolver();
-                Cursor c = cr.query(Im.Contacts.CONTENT_URI_CHAT_CONTACTS,
-                        null,
-                        null,
-                        null,
-                        null);
-                int slot = item.getAlphabeticShortcut() - '0';
-                if (Dashboard.quickSwitch(this, c, slot)) {
-                    finish();
-                }
-                c.close();
+                mChatSwitcher.handleShortcut(item.getAlphabeticShortcut());
                 return true;
         }
 
@@ -251,10 +252,17 @@ public class NewChatActivity extends Activity {
         return super.dispatchKeyEvent(event);
     }
 
+    /**
+     * Check whether we are asked to open Dashboard on startup.
+     */
+    private boolean requireOpenDashboardOnStart(Intent intent) {
+        return intent.getBooleanExtra(EXTRA_INTENT_SHOW_MULTIPLE, false);
+    }
+
     private void showRosterScreen() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setClass(this, ContactListActivity.class);
-        intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, mChatView.getAccountId());
+        intent.putExtra(EXTRA_INTENT_ACCOUNT_ID, mChatView.getAccountId());
         startActivity(intent);
     }
 
@@ -331,47 +339,11 @@ public class NewChatActivity extends Activity {
     }
 
     private void switchChat(int delta) {
-        Cursor c = getContentResolver().query(Im.Contacts.CONTENT_URI_CHAT_CONTACTS,
-                CHAT_SWITCHER_PROJECTION, null, null, null);
+        long providerId = mChatView.getProviderId();
+        long accountId = mChatView.getAccountId();
+        String contact = mChatView.getUserName();
 
-        try {
-            final int N = c.getCount();
-            if (N <= 1) {
-                return;
-            }
-
-            int current = -1;
-            // find current position
-            for (int i = 0; i < N; i++) {
-                c.moveToNext();
-                long id = c.getLong(CHAT_SWITCHER_ID_COLUMN);
-                if (id == mChatView.getChatId()) {
-                    current = i;
-                }
-            }
-            if (current == -1) {
-                return;
-            }
-
-            int newPosition = (current + delta) % N;
-            if (newPosition < 0) {
-                newPosition += N;
-            }
-
-            c.moveToPosition(newPosition);
-
-            long providerId = c.getLong(CHAT_SWITCHER_PROVIDER_COLUMN);
-            long accountId = c.getLong(CHAT_SWITCHER_ACCOUNT_COLUMN);
-            String contact = c.getString(CHAT_SWITCHER_USERNAME_COLUMN);
-            long chatId = c.getLong(CHAT_SWITCHER_ID_COLUMN);
-            Intent intent = Dashboard.makeChatIntent(getContentResolver(), providerId, accountId,
-                    contact, chatId);
-
-            startActivity(intent);
-            finish();
-        } finally {
-            c.close();
-        }
+        mChatSwitcher.rotateChat(delta, contact, accountId, providerId);
     }
 
     private void startContactPicker() {

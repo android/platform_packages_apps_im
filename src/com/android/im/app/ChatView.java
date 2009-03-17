@@ -26,11 +26,11 @@ import android.app.AlertDialog;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -41,16 +41,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.RemoteException;
+import android.provider.Browser;
 import android.provider.Im;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.text.style.URLSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -203,7 +208,7 @@ public class ChatView extends LinearLayout {
                 public void onClick(DialogInterface dialog, int which) {
                     Uri uri = Uri.parse(linkUrls.get(which));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.putExtra(Browser.EXTRA_APPLICATION_ID, mScreen.getPackageName());
                     mScreen.startActivity(intent);
                 }
             });
@@ -343,15 +348,42 @@ public class ChatView extends LinearLayout {
                         case KeyEvent.KEYCODE_ENTER:
                             if (event.isAltPressed()) {
                                 mEdtInput.append("\n");
-                            } else {
-                                sendMessage();
+                                return true;
                             }
-                            return true;
                     }
                 }
                 return false;
             }
         });
+
+        mEdtInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (event != null) {
+                    if (event.isAltPressed()) {
+                        return false;
+                    }
+                }
+
+                sendMessage();
+                return true;
+            }
+        });
+
+        // TODO: this is a hack to implement BUG #1611278, when dispatchKeyEvent() works with
+        // the soft keyboard, we should remove this hack.
+        mEdtInput.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int before, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int after) {
+                //log("TextWatcher: " + s);
+                userActionDetected();
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 sendMessage();
@@ -379,12 +411,23 @@ public class ChatView extends LinearLayout {
             cursor.deactivate();
         }
         cancelRequery();
-        if (mViewType == VIEW_TYPE_CHAT) {
-            markAsRead();
+        if (mViewType == VIEW_TYPE_CHAT && mChatSession != null) {
+            try {
+                mChatSession.markAsRead();
+            } catch (RemoteException e) {
+                mHandler.showServiceErrorAlert();
+            }
         }
         unregisterChatListener();
         unregisterForConnEvents();
         unregisterChatSessionListener();
+    }
+
+    private void closeSoftKeyboard() {
+        InputMethodManager inputMethodManager =
+            (InputMethodManager)mApp.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputMethodManager.hideSoftInputFromWindow(mEdtInput.getWindowToken(), 0);
     }
 
     void updateChat() {
@@ -525,6 +568,8 @@ public class ChatView extends LinearLayout {
         String displayableAddr = ImpsAddressUtils.getDisplayableAddress(from);
         text.setText(mContext.getString(R.string.subscription_prompt, displayableAddr));
         mTitle.setText(mContext.getString(R.string.chat_with, displayableAddr));
+
+        mApp.dismissChatNotification(providerId, from);
     }
 
     void acceptInvitation() {
@@ -601,15 +646,6 @@ public class ChatView extends LinearLayout {
         } else {
             mHistory.setAdapter(null);
         }
-    }
-
-    private void markAsRead() {
-        ContentValues values = new ContentValues(1);
-        values.put(Im.Chats.LAST_UNREAD_MESSAGE, (String)null);
-
-        ContentResolver cr = mContext.getContentResolver();
-        Uri uri = ContentUris.withAppendedId(Im.Chats.CONTENT_URI, mChatId);
-        cr.update(uri, values, null, null);
     }
 
     private void startQuery() {
@@ -802,7 +838,12 @@ public class ChatView extends LinearLayout {
 
     void sendMessage() {
         String msg = mEdtInput.getText().toString();
-        if (mChatSession != null && !TextUtils.isEmpty(msg.trim())) {
+
+        if (TextUtils.isEmpty(msg.trim())) {
+            return;
+        }
+
+        if (mChatSession != null) {
             try {
                 mChatSession.sendMessage(msg);
                 mEdtInput.setText("");
@@ -811,6 +852,13 @@ public class ChatView extends LinearLayout {
             } catch (RemoteException e) {
                 mHandler.showServiceErrorAlert();
             }
+        }
+
+        // Close the soft on-screen keyboard if we're in landscape mode so the user can see the
+        // conversation.
+        Configuration config = getResources().getConfiguration();
+        if (config.orientation == config.ORIENTATION_LANDSCAPE) {
+            closeSoftKeyboard();
         }
     }
 
@@ -827,7 +875,7 @@ public class ChatView extends LinearLayout {
                 IContactListManager listMgr = conn.getContactListManager();
                 listMgr.registerContactListListener(mContactListListener);
             }
-            mApp.dismissNotifications(mProviderId);
+            mApp.dismissChatNotification(mProviderId, mUserName);
         } catch (RemoteException e) {
             Log.w(ImApp.LOG_TAG, "<ChatView> registerChatListener fail:" + e.getMessage());
         }
@@ -915,6 +963,34 @@ public class ChatView extends LinearLayout {
         }
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        userActionDetected();
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        userActionDetected();
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean dispatchTrackballEvent(MotionEvent ev) {
+        userActionDetected();
+        return super.dispatchTrackballEvent(ev);
+    }
+
+    private void userActionDetected() {
+        if (mChatSession != null) {
+            try {
+                mChatSession.markAsRead();
+            } catch (RemoteException e) {
+                mHandler.showServiceErrorAlert();
+            }
+        }
+    }
+
     private final class ChatViewHandler extends SimpleAlertHandler {
         public ChatViewHandler() {
             super(mScreen);
@@ -963,13 +1039,13 @@ public class ChatView extends LinearLayout {
     public static class DeltaCursor implements Cursor {
         static final String DELTA_COLUMN_NAME = "delta";
 
-        private Cursor mCursor;
+        private Cursor mInnerCursor;
         private String[] mColumnNames;
         private int mDateColumn = -1;
         private int mDeltaColumn = -1;
 
         DeltaCursor(Cursor cursor) {
-            mCursor = cursor;
+            mInnerCursor = cursor;
 
             String[] columnNames = cursor.getColumnNames();
             int len = columnNames.length;
@@ -991,55 +1067,55 @@ public class ChatView extends LinearLayout {
         }
 
         public int getCount() {
-            return mCursor.getCount();
+            return mInnerCursor.getCount();
         }
 
         public int getPosition() {
-            return mCursor.getPosition();
+            return mInnerCursor.getPosition();
         }
 
         public boolean move(int offset) {
-            return mCursor.move(offset);
+            return mInnerCursor.move(offset);
         }
 
         public boolean moveToPosition(int position) {
-            return mCursor.moveToPosition(position);
+            return mInnerCursor.moveToPosition(position);
         }
 
         public boolean moveToFirst() {
-            return mCursor.moveToFirst();
+            return mInnerCursor.moveToFirst();
         }
 
         public boolean moveToLast() {
-            return mCursor.moveToLast();
+            return mInnerCursor.moveToLast();
         }
 
         public boolean moveToNext() {
-            return mCursor.moveToNext();
+            return mInnerCursor.moveToNext();
         }
 
         public boolean moveToPrevious() {
-            return mCursor.moveToPrevious();
+            return mInnerCursor.moveToPrevious();
         }
 
         public boolean isFirst() {
-            return mCursor.isFirst();
+            return mInnerCursor.isFirst();
         }
 
         public boolean isLast() {
-            return mCursor.isLast();
+            return mInnerCursor.isLast();
         }
 
         public boolean isBeforeFirst() {
-            return mCursor.isBeforeFirst();
+            return mInnerCursor.isBeforeFirst();
         }
 
         public boolean isAfterLast() {
-            return mCursor.isAfterLast();
+            return mInnerCursor.isAfterLast();
         }
 
         public boolean deleteRow() {
-            return mCursor.deleteRow();
+            return mInnerCursor.deleteRow();
         }
 
         public int getColumnIndex(String columnName) {
@@ -1047,7 +1123,7 @@ public class ChatView extends LinearLayout {
                 return mDeltaColumn;
             }
 
-            int columnIndex = mCursor.getColumnIndex(columnName);
+            int columnIndex = mInnerCursor.getColumnIndex(columnName);
             return columnIndex;
         }
 
@@ -1056,7 +1132,7 @@ public class ChatView extends LinearLayout {
                 return mDeltaColumn;
             }
 
-            return mCursor.getColumnIndexOrThrow(columnName);
+            return mInnerCursor.getColumnIndexOrThrow(columnName);
         }
 
         public String getColumnName(int columnIndex) {
@@ -1064,19 +1140,19 @@ public class ChatView extends LinearLayout {
                 return DELTA_COLUMN_NAME;
             }
 
-            return mCursor.getColumnName(columnIndex);
+            return mInnerCursor.getColumnName(columnIndex);
         }
 
         public int getColumnCount() {
-            return mCursor.getColumnCount() + 1;
+            return mInnerCursor.getColumnCount() + 1;
         }
 
         public boolean supportsUpdates() {
-            return mCursor.supportsUpdates();
+            return mInnerCursor.supportsUpdates();
         }
 
         public boolean hasUpdates() {
-            return mCursor.hasUpdates();
+            return mInnerCursor.hasUpdates();
         }
 
         public boolean updateBlob(int columnIndex, byte[] value) {
@@ -1084,7 +1160,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateBlob(columnIndex, value);
+            return mInnerCursor.updateBlob(columnIndex, value);
         }
 
         public boolean updateString(int columnIndex, String value) {
@@ -1092,7 +1168,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateString(columnIndex, value);
+            return mInnerCursor.updateString(columnIndex, value);
         }
 
         public boolean updateShort(int columnIndex, short value) {
@@ -1100,7 +1176,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateShort(columnIndex, value);
+            return mInnerCursor.updateShort(columnIndex, value);
         }
 
         public boolean updateInt(int columnIndex, int value) {
@@ -1108,7 +1184,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateInt(columnIndex, value);
+            return mInnerCursor.updateInt(columnIndex, value);
         }
 
         public boolean updateLong(int columnIndex, long value) {
@@ -1116,7 +1192,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateLong(columnIndex, value);
+            return mInnerCursor.updateLong(columnIndex, value);
         }
 
         public boolean updateFloat(int columnIndex, float value) {
@@ -1124,7 +1200,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateFloat(columnIndex, value);
+            return mInnerCursor.updateFloat(columnIndex, value);
         }
 
         public boolean updateDouble(int columnIndex, double value) {
@@ -1132,7 +1208,7 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateDouble(columnIndex, value);
+            return mInnerCursor.updateDouble(columnIndex, value);
         }
 
         public boolean updateToNull(int columnIndex) {
@@ -1140,68 +1216,68 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.updateToNull(columnIndex);
+            return mInnerCursor.updateToNull(columnIndex);
         }
 
         public boolean commitUpdates() {
-            return mCursor.commitUpdates();
+            return mInnerCursor.commitUpdates();
         }
 
         public boolean commitUpdates(Map<? extends Long,
                 ? extends Map<String,Object>> values) {
-            return mCursor.commitUpdates(values);
+            return mInnerCursor.commitUpdates(values);
         }
 
         public void abortUpdates() {
-            mCursor.abortUpdates();
+            mInnerCursor.abortUpdates();
         }
 
         public void deactivate() {
-            mCursor.deactivate();
+            mInnerCursor.deactivate();
         }
 
         public boolean requery() {
-            return mCursor.requery();
+            return mInnerCursor.requery();
         }
 
         public void close() {
-            mCursor.close();
+            mInnerCursor.close();
         }
 
         public boolean isClosed() {
-            return mCursor.isClosed();
+            return mInnerCursor.isClosed();
         }
 
         public void registerContentObserver(ContentObserver observer) {
-            mCursor.registerContentObserver(observer);
+            mInnerCursor.registerContentObserver(observer);
         }
 
         public void unregisterContentObserver(ContentObserver observer) {
-            mCursor.unregisterContentObserver(observer);
+            mInnerCursor.unregisterContentObserver(observer);
         }
 
         public void registerDataSetObserver(DataSetObserver observer) {
-            mCursor.registerDataSetObserver(observer);
+            mInnerCursor.registerDataSetObserver(observer);
         }
 
         public void unregisterDataSetObserver(DataSetObserver observer) {
-            mCursor.unregisterDataSetObserver(observer);
+            mInnerCursor.unregisterDataSetObserver(observer);
         }
 
         public void setNotificationUri(ContentResolver cr, Uri uri) {
-            mCursor.setNotificationUri(cr, uri);
+            mInnerCursor.setNotificationUri(cr, uri);
         }
 
         public boolean getWantsAllOnMoveCalls() {
-            return mCursor.getWantsAllOnMoveCalls();
+            return mInnerCursor.getWantsAllOnMoveCalls();
         }
 
         public Bundle getExtras() {
-            return mCursor.getExtras();
+            return mInnerCursor.getExtras();
         }
 
         public Bundle respond(Bundle extras) {
-            return mCursor.respond(extras);
+            return mInnerCursor.respond(extras);
         }
 
         public String[] getColumnNames() {
@@ -1209,8 +1285,8 @@ public class ChatView extends LinearLayout {
         }
 
         private void checkPosition() {
-            int pos = mCursor.getPosition();
-            int count = mCursor.getCount();
+            int pos = mInnerCursor.getPosition();
+            int count = mInnerCursor.getCount();
 
             if (-1 == pos || count == pos) {
                 throw new CursorIndexOutOfBoundsException(pos, count);
@@ -1224,7 +1300,7 @@ public class ChatView extends LinearLayout {
                 return null;
             }
 
-            return mCursor.getBlob(column);
+            return mInnerCursor.getBlob(column);
         }
 
         public String getString(int column) {
@@ -1235,7 +1311,7 @@ public class ChatView extends LinearLayout {
                 return Long.toString(value);
             }
 
-            return mCursor.getString(column);
+            return mInnerCursor.getString(column);
         }
 
         public void copyStringToBuffer(int columnIndex, CharArrayBuffer buffer) {
@@ -1253,7 +1329,7 @@ public class ChatView extends LinearLayout {
                 }
                 buffer.sizeCopied = strValue.length();
             } else {
-                mCursor.copyStringToBuffer(columnIndex, buffer);
+                mInnerCursor.copyStringToBuffer(columnIndex, buffer);
             }
         }
 
@@ -1264,7 +1340,7 @@ public class ChatView extends LinearLayout {
                 return (short)getDeltaValue();
             }
 
-            return mCursor.getShort(column);
+            return mInnerCursor.getShort(column);
         }
 
         public int getInt(int column) {
@@ -1274,7 +1350,7 @@ public class ChatView extends LinearLayout {
                 return (int)getDeltaValue();
             }
 
-            return mCursor.getInt(column);
+            return mInnerCursor.getInt(column);
         }
 
         public long getLong(int column) {
@@ -1285,7 +1361,7 @@ public class ChatView extends LinearLayout {
                 return getDeltaValue();
             }
 
-            return mCursor.getLong(column);
+            return mInnerCursor.getLong(column);
         }
 
         public float getFloat(int column) {
@@ -1295,7 +1371,7 @@ public class ChatView extends LinearLayout {
                 return getDeltaValue();
             }
 
-            return mCursor.getFloat(column);
+            return mInnerCursor.getFloat(column);
         }
 
         public double getDouble(int column) {
@@ -1305,7 +1381,7 @@ public class ChatView extends LinearLayout {
                 return getDeltaValue();
             }
 
-            return mCursor.getDouble(column);
+            return mInnerCursor.getDouble(column);
         }
 
         public boolean isNull(int column) {
@@ -1315,23 +1391,23 @@ public class ChatView extends LinearLayout {
                 return false;
             }
 
-            return mCursor.isNull(column);
+            return mInnerCursor.isNull(column);
         }
 
         private long getDeltaValue() {
-            int pos = mCursor.getPosition();
+            int pos = mInnerCursor.getPosition();
             //Log.i(LOG_TAG, "getDeltaValue: mPos=" + mPos);
 
             long t2, t1;
 
             if (pos == getCount()-1) {
-                t1 = mCursor.getLong(mDateColumn);
+                t1 = mInnerCursor.getLong(mDateColumn);
                 t2 = System.currentTimeMillis();
             } else {
-                mCursor.moveToPosition(pos + 1);
-                t2 = mCursor.getLong(mDateColumn);
-                mCursor.moveToPosition(pos);
-                t1 = mCursor.getLong(mDateColumn);
+                mInnerCursor.moveToPosition(pos + 1);
+                t2 = mInnerCursor.getLong(mDateColumn);
+                mInnerCursor.moveToPosition(pos);
+                t1 = mInnerCursor.getLong(mDateColumn);
             }
 
             return t2 - t1;
@@ -1439,6 +1515,15 @@ public class ChatView extends LinearLayout {
         public void onScrollStateChanged(AbsListView view, int scrollState) {
             int oldState = mScrollState;
             mScrollState = scrollState;
+
+            if (mChatSession != null) {
+                try {
+                    mChatSession.markAsRead();
+                } catch (RemoteException e) {
+                    mHandler.showServiceErrorAlert();
+                }
+            }
+
             if (oldState == OnScrollListener.SCROLL_STATE_FLING) {
                 if (mNeedRequeryCursor) {
                     requeryCursor();

@@ -22,32 +22,34 @@
     class="com.android.im.app.BlockedContactView"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="9dip"
+    android:paddingRight="9dip">
 
     <FrameLayout
+        android:layout_gravity="center_vertical"
         android:layout_width="60dip"
         android:layout_height="60dip">
 
         <ImageView android:id="@+id/avatar"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="2px"
+            android:padding="2dip"
             android:scaleType="fitCenter" />
 
-        <RelativeLayout android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <ImageView android:id="@+id/blocked"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
-
+        <!-- Draw the circle-slash over top of the user's avatar -->
+        <ImageView android:id="@+id/blocked"
+            android:src="@drawable/ic_im_block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
     </FrameLayout>
 
     <LinearLayout
         android:orientation="vertical"
-        android:paddingLeft="4dip"
+        android:paddingLeft="9dip"
+        android:layout_gravity="center_vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
@@ -60,10 +62,9 @@
 
         <TextView android:id="@+id/line2"
             android:maxLines="1"
-            android:textSize="16sp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
 

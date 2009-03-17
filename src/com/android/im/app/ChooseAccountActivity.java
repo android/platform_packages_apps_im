@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
 /*
  * Copyright (C) 2008 Esmertec AG.
  * Copyright (C) 2008 The Android Open Source Project
@@ -16,16 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item 
-        android:state_selected="true"
-        android:drawable="@drawable/dashboard_highlight_selected" />
-    <item
-        android:state_pressed="true"
-        android:drawable="@drawable/dashboard_highlight_selected" />
-    <item
-        android:state_focused="true"
-        android:drawable="@drawable/dashboard_highlight_selected" />
-</selector>
+package com.android.im.app;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.content.Intent;
+import android.provider.Im;
+
+public class ChooseAccountActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setType(Im.Provider.CONTENT_TYPE);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+        finish();
+    }
+}

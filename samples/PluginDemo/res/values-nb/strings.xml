@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"Legg til kontakt"</string>
+    <string name="menu_remove_contact">"Fjern kontakt"</string>
+    <string name="menu_block_contact">"Blokker kontakt"</string>
+    <string name="menu_contact_list">"Kontaktliste"</string>
+    <string name="menu_start_chat">"Start samtale"</string>
+    <string name="menu_view_profile">"Vis profil"</string>
+    <string name="menu_end_conversation">"Avslutt samtale"</string>
+    <string name="menu_switch_chats">"Bytt mellom samtaler"</string>
+    <string name="menu_insert_smiley">"Sett inn smilefjes"</string>
+    <string name="sign_up">"Mangler du konto?"</string>
+    <string name="check_save_password">"Av sikkerhetsgrunner, gå til nettstedet og endre passordet om telefonen blir tapt eller stjåler."</string>
+    <string name="buddy_list_title">"Kontaktliste - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"Brukernavn:"</string>
+    <string name="ongoing_conversation">"Pågående samtaler (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"Kontaktprofil"</string>
+    <string name="presence_available">"Tilgjengelig"</string>
+    <string name="add_contact_title">"Legg til kontakt"</string>
+    <string name="input_contact_label">"E-postadresse til den du ønsker å invitere:"</string>
+    <string name="invite_label">"Send invitasjon"</string>
+  <string-array name="smiley_names">
+    <item>"Glad"</item>
+    <item>"Trist"</item>
+    <item>"Blunker"</item>
+    <item>"Rekker tunge"</item>
+    <item>"Overrasket"</item>
+    <item>"Kyss"</item>
+    <item>"Roper"</item>
+    <item>"Kul"</item>
+    <item>"Pengemunn"</item>
+    <item>"Fot i munnen"</item>
+    <item>"Flau"</item>
+    <item>"Engel"</item>
+    <item>"Usikker"</item>
+    <item>"Gråter"</item>
+    <item>"Stille som graven"</item>
+    <item>"Ler"</item>
+    <item>"Forvirret"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

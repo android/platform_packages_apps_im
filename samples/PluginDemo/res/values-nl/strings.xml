@@ -18,7 +18,7 @@
     <string name="menu_add_contact">"Contactpersoon toevoegen"</string>
     <string name="menu_remove_contact">"Contactpersoon verwijderen"</string>
     <string name="menu_block_contact">"Blokkeren"</string>
-    <string name="menu_contact_list">"Lijst met contactpersonen"</string>
+    <string name="menu_contact_list">"Lijst met contacten"</string>
     <string name="menu_start_chat">"Chat verzenden"</string>
     <string name="menu_view_profile">"Buddygegevens"</string>
     <string name="menu_end_conversation">"Conversatie beëindigen"</string>
@@ -26,7 +26,7 @@
     <string name="menu_insert_smiley">"Emoticons invoegen"</string>
     <string name="sign_up">"Een nieuw account verkrijgen"</string>
     <string name="check_save_password">"Als u uw telefoon verliest of als deze wordt gestolen, moet u voor uw veiligheid naar de website gaan op uw computer en uw wachtwoord wijzigen."</string>
-    <string name="buddy_list_title">"Lijst met contactpersonen - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="buddy_list_title">"Lijst met contacten - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
     <string name="label_username">"Gebruikersnaam:"</string>
     <string name="ongoing_conversation">"Conversaties (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="contact_profile_title">"Contactgegevens"</string>
@@ -58,7 +58,7 @@
     <item>":-("</item>
     <item>";-)"</item>
     <item>":-P"</item>
-    <item>"=-O"</item>
+    <item>"Err:502"</item>
     <item>":-*"</item>
     <item>":O"</item>
     <item>"B-)"</item>

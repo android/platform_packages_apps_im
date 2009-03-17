@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Komunikator"</string>
-    <string name="menu_add_account">"Dodaj konto"</string>
-    <string name="menu_edit_account">"Edytuj konto"</string>
-    <string name="menu_remove_account">"Usuń konto"</string>
-    <string name="menu_sign_out_all">"Wyloguj wszystko"</string>
     <string name="menu_cancel_signin">"Anuluj logowanie"</string>
     <string name="menu_add_contact">"Dodaj kontakt"</string>
     <string name="menu_remove_contact">"Usuń kontakt"</string>
@@ -28,16 +24,14 @@
     <string name="menu_view_accounts">"Lista kont"</string>
     <string name="menu_settings">"Ustawienia"</string>
     <string name="menu_start_chat">"Rozpocznij czat"</string>
-    <string name="menu_group_chat">"Rozpocznij czat grupowy…"</string>
     <string name="menu_sign_out">"Wyloguj"</string>
     <string name="menu_view_profile">"Przeglądaj profil"</string>
     <string name="menu_end_conversation">"Zakończ czat"</string>
     <string name="menu_view_contact_list">"Lista kontaktów"</string>
     <string name="menu_invite_contact">"Zaproś…"</string>
     <string name="menu_switch_chats">"Przełącz czaty"</string>
-    <string name="menu_insert_smiley">"Wstaw emotikon"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_insert_smiley">"Wstaw buźkę"</string>
+    <string name="menu_plus">"Menu+"</string>
     <string name="default_input_title">"Katalog wejściowy"</string>
     <string name="confirm">"Potwierdź"</string>
     <string name="confirm_delete_contact">"Kontakt „<xliff:g id="USER">%1$s</xliff:g>” zostanie usunięty."</string>
@@ -49,12 +43,7 @@
     <string name="no">"Anuluj"</string>
     <string name="signed_out_prompt">"Nastąpiło wylogowanie z konta <xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
     <string name="signed_out_prompt_with_error">"Nastąpiło wylogowanie z konta <xliff:g id="ACCOUNT">%1$s</xliff:g> z powodu <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Czat - Wybierz konto"</string>
-    <string name="account_title">"Konto <xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
-    <string name="one_conversation">"1 czat"</string>
-    <string name="conversations">"Czaty: <xliff:g id="COUNT">%1$d</xliff:g>"</string>
     <string name="add_account">"Dodaj konto <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
-    <string name="add_account_title">"Czat - Dodaj konto"</string>
     <string name="label_username">"Nazwa użytkownika:"</string>
     <string name="label_password">"Hasło:"</string>
     <string name="remember_password">"Pamiętaj moje hasło."</string>
@@ -64,6 +53,14 @@
     <string name="sign_in">"Zaloguj"</string>
     <string name="signing_in_to">"Logowanie do konta <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
     <string name="signing_in_wait">"Trwa logowanie…"</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Aktywne czaty (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Zaproszenia"</string>
@@ -76,7 +73,7 @@
     <string name="blocked_list_title">"Zablokowane kontakty - <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="no_blocked_contact">"Brak zablokowanych kontaktów."</string>
     <string name="contact_profile_title">"Profil kontaktu"</string>
-    <string name="label_status">"Stan:"</string>
+    <string name="label_status">"Status:"</string>
     <string name="label_client_type">"Typ klienta:"</string>
     <string name="client_type_computer">"Komputer"</string>
     <string name="client_type_mobile">"Przenośny"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"Kanał CIR"</string>
     <string name="host_label">"Host"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"Identyfikator klienta"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,13 +97,14 @@
     <string name="save">"Zapisz"</string>
     <string name="chat_with">"Czatuj z użytkownikiem <xliff:g id="USER">%1$s</xliff:g>"</string>
     <string name="me">"Ja"</string>
+    <string name="compose_hint">"Wpisz, aby utworzyć"</string>
     <string name="contact_online">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> jest dostępny"</string>
     <string name="contact_away">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> jest niedostępny"</string>
     <string name="contact_busy">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> jest zajęty"</string>
     <string name="contact_offline">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> jest niedostępny"</string>
     <string name="contact_joined">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> dołączył do czatu"</string>
     <string name="contact_left">"Użytkownik <xliff:g id="USER">%1$s</xliff:g> opuścił czat"</string>
-    <string name="time_stamp">"„Wysłano o” gg:mm „w” EEEE"</string>
+    <string name="time_stamp" format="date">"'Wysłane '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g><xliff:g id="AMPM">a</xliff:g>' do '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Wyślij"</string>
     <string name="msg_sent_failed">"Nie można wysłać wiadomości."</string>
     <string name="disconnected_warning">"Utracono połączenie z serwerem. Wiadomości zostaną wysłane po przejściu w tryb online."</string>
@@ -117,21 +114,19 @@
     <string name="empty_chat_list">"Brak aktywnych czatów."</string>
     <string name="add_contact_title">"Dodaj kontakt"</string>
     <string name="input_contact_label">"Adres e-mail zapraszanej osoby:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Wybierz listę"</string>
     <string name="invite_instruction">"Wpisz imię, aby dodać do Kontaktów."</string>
     <string name="invite_label">"Wyślij zaproszenie"</string>
     <string name="setting_title">"Ustawienia ogólne"</string>
     <string name="hide_offline_contacts">"Ukryj kontakty offline"</string>
     <string name="notification_group_title">"Ustawienia powiadomień"</string>
-    <string name="notification_enabled_title">"Powiadomienia wiadomości błyskawicznych"</string>
-    <string name="notification_enabled_summary">"Sygnalizuj nadejście wiadomości błyskawicznej na pasku stanu"</string>
+    <string name="notification_enabled_title">"Powiadamiaj o czacie"</string>
+    <string name="notification_enabled_summary">"Sygnalizuj nową wiadomość na czacie na pasku stanu"</string>
     <string name="notification_vibrate_title">"Wibracje"</string>
-    <string name="notification_vibrate_summary">"Sygnalizuj nadejście wiadomości błyskawicznej wibracją"</string>
+    <string name="notification_vibrate_summary">"Sygnalizuj wiadomość na czacie wibracją"</string>
     <string name="notification_sound_title">"Dźwięk"</string>
-    <string name="notification_sound_summary">"Sygnalizuj nadejście wiadomości błyskawicznej dzwonkiem"</string>
+    <string name="notification_sound_summary">"Sygnalizuj wiadomość na czacie dzwonkiem"</string>
     <string name="notification_ringtone_title">"Wybierz dzwonek"</string>
-    <string name="invitation_title">"Zaproszenie"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> przesyła zaproszenie do czatu grupowego."</string>
     <string name="invitation_sent_prompt">"Wysłano zaproszenie do użytkownika <xliff:g id="USER">%1$s</xliff:g>."</string>
     <string name="accept_invitation">"Zaakceptuj"</string>
@@ -151,14 +146,13 @@
     <string name="block_contact_success">"Zablokowano kontakt „<xliff:g id="USER">%1$s</xliff:g>”."</string>
     <string name="unblock_contact_success">"Odblokowano kontakt „<xliff:g id="USER">%1$s</xliff:g>”."</string>
     <string name="perm_label">"uruchom usługę wiadomości błyskawicznych"</string>
-    <string name="perm_desc">"Umożliwia aplikacjom uruchamianie usługi wiadomości błyskawicznych przez zamierzenie."</string>
+    <string name="perm_desc">"Umożliwia aplikacjom uruchamianie czatu na żądanie."</string>
     <string name="error">"Uwaga"</string>
     <string name="login_service_failed">"Nie można zalogować do usługi <xliff:g id="SERVICE">%1$s</xliff:g>. Spróbuj ponownie później."\n"(Szczegóły: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
     <string name="add_list_failed">"Nie dodano listy."</string>
     <string name="block_contact_failed">"Nie zablokowano kontaktu."</string>
     <string name="unblock_contact_failed">"Nie odblokowano kontaktu."</string>
     <string name="select_contact">"Należy wybrać kontakt."</string>
-    <string name="select_chat_session">"Wybierz sesję czatu."</string>
     <string name="disconnected">"Rozłączono!"\n</string>
     <string name="service_error">"Błąd usługi!"</string>
     <string name="load_contact_list_failed">"Nie załadowano listy kontaktów."</string>

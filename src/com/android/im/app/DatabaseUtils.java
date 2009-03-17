@@ -17,6 +17,8 @@
 
 package com.android.im.app;
 
+import com.android.im.plugin.ImConfigNames;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -27,8 +29,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.Im;
+import android.util.Log;
+
+import java.util.Map;
 
 public class DatabaseUtils {
+
+    private static final String TAG = ImApp.LOG_TAG;
+
     private DatabaseUtils() {
     }
 
@@ -124,5 +132,122 @@ public class DatabaseUtils {
         Bitmap b = BitmapFactory.decodeByteArray(data, 0, data.length);
         Drawable avatar = new BitmapDrawable(b);
         return avatar;
+    }
+
+    /**
+     * Update IM provider database for a plugin using newly loaded information.
+     * @param cr the resolver
+     * @param providerName the plugin provider name
+     * @param providerFullName the full name
+     * @param signUpUrl the plugin's service signup URL
+     * @param config the plugin's settings
+     * @return the provider ID of the plugin
+     */
+    public static long updateProviderDb(ContentResolver cr,
+            String providerName, String providerFullName, String signUpUrl,
+            Map<String, String> config) {
+        boolean versionChanged;
+
+        // query provider data
+        long providerId = Im.Provider.getProviderIdForName(cr, providerName);
+        if (providerId > 0) {
+            // already loaded, check if version changed
+            String pluginVersion = config.get(ImConfigNames.PLUGIN_VERSION);
+            if (!isPluginVersionChanged(cr, providerId, pluginVersion)) {
+                // no change, just return
+                return providerId;
+            }
+            // changed, update provider meta data
+            updateProviderRow(cr, providerId, providerFullName, signUpUrl);
+            // clear branding resource map cache
+            clearBrandingResourceMapCache(cr, providerId);
+
+            Log.d(TAG, "Plugin " + providerName + "(" + providerId +
+                    ") has a version change. Database updated.");
+        } else {
+            // new plugin, not loaded before, insert the provider data
+            providerId = insertProviderRow(cr, providerName, providerFullName, signUpUrl);
+
+            Log.d(TAG, "Plugin " + providerName + "(" + providerId +
+                    ") is new. Provider added to IM db.");
+        }
+
+        // plugin provider has been inserted/updated, we need to update settings
+        saveProviderSettings(cr, providerId, config);
+
+        return providerId;
+    }
+
+    /**
+     * Clear the branding resource map cache.
+     */
+    private static int clearBrandingResourceMapCache(ContentResolver cr, long providerId) {
+        StringBuilder where = new StringBuilder();
+        where.append(Im.BrandingResourceMapCache.PROVIDER_ID);
+        where.append('=');
+        where.append(providerId);
+        return cr.delete(Im.BrandingResourceMapCache.CONTENT_URI, where.toString(), null);
+    }
+
+    /**
+     * Insert the plugin settings into the database.
+     */
+    private static int saveProviderSettings(ContentResolver cr, long providerId,
+            Map<String, String> config) {
+        ContentValues[] settingValues = new ContentValues[config.size()];
+        int index = 0;
+        for (Map.Entry<String, String> entry : config.entrySet()) {
+            ContentValues settingValue = new ContentValues();
+            settingValue.put(Im.ProviderSettings.PROVIDER, providerId);
+            settingValue.put(Im.ProviderSettings.NAME, entry.getKey());
+            settingValue.put(Im.ProviderSettings.VALUE, entry.getValue());
+            settingValues[index++] = settingValue;
+        }
+        return cr.bulkInsert(Im.ProviderSettings.CONTENT_URI, settingValues);
+    }
+
+    /**
+     * Insert a new plugin provider to the provider table.
+     */
+    private static long insertProviderRow(ContentResolver cr, String providerName,
+            String providerFullName, String signUpUrl) {
+        ContentValues values = new ContentValues(3);
+        values.put(Im.Provider.NAME, providerName);
+        values.put(Im.Provider.FULLNAME, providerFullName);
+        values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+        values.put(Im.Provider.SIGNUP_URL, signUpUrl);
+        Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
+        return ContentUris.parseId(result);
+    }
+
+    /**
+     * Update the data of a plugin provider.
+     */
+    private static int updateProviderRow(ContentResolver cr, long providerId,
+            String providerFullName, String signUpUrl) {
+        // Update the full name, signup url and category each time when the plugin change
+        // instead of specific version change because this is called only once.
+        // It's ok to update them even the values are not changed.
+        // Note that we don't update the provider name because it's used as
+        // identifier at some place and the plugin should never change it.
+        ContentValues values = new ContentValues(3);
+        values.put(Im.Provider.FULLNAME, providerFullName);
+        values.put(Im.Provider.SIGNUP_URL, signUpUrl);
+        values.put(Im.Provider.CATEGORY, ImApp.IMPS_CATEGORY);
+        Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
+        return cr.update(uri, values, null, null);
+    }
+
+    /**
+     * Compare the saved version of a plugin provider with the newly loaded version.
+     */
+    private static boolean isPluginVersionChanged(ContentResolver cr, long providerId,
+            String newVersion) {
+        String oldVersion = Im.ProviderSettings.getStringValue(cr, providerId,
+                ImConfigNames.PLUGIN_VERSION);
+        if (oldVersion == null) {
+            return true;
+        }
+        return !oldVersion.equals(newVersion);
     }
 }

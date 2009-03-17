@@ -26,10 +26,13 @@ import java.util.Map;
 import java.util.Vector;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
@@ -52,6 +55,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.im.app.DatabaseUtils;
 import com.android.im.IConnectionCreationListener;
 import com.android.im.IImConnection;
 import com.android.im.IRemoteImService;
@@ -90,6 +94,10 @@ public class RemoteImService extends Service {
     private int mNetworkType;
     private boolean mNeedCheckAutoLogin;
 
+    private boolean mBackgroundDataEnabled;
+
+    private SettingsMonitor mSettingsMonitor;
+
     Vector<ImConnectionAdapter> mConnections;
     final RemoteCallbackList<IConnectionCreationListener> mRemoteListeners
             = new RemoteCallbackList<IConnectionCreationListener>();
@@ -109,6 +117,16 @@ public class RemoteImService extends Service {
         mNetworkConnectivityListener = new NetworkConnectivityListener();
         mNetworkConnectivityListener.registerHandler(mServiceHandler, EVENT_NETWORK_STATE_CHANGED);
         mNetworkConnectivityListener.startListening(this);
+
+        mSettingsMonitor = new SettingsMonitor();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED);
+        registerReceiver(mSettingsMonitor, intentFilter);
+
+        ConnectivityManager manager
+            = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        setBackgroundData(manager.getBackgroundDataSetting());
 
         findAvaiablePlugins();
         AndroidSystemService.getInstance().initialize(this);
@@ -151,8 +169,8 @@ public class RemoteImService extends Service {
 
             config.put(ImConfigNames.PLUGIN_PATH, pluginInfo.mSrcPath);
             config.put(ImConfigNames.PLUGIN_CLASS, pluginInfo.mClassName);
-            long providerId = updateProviderDb(providerName, providerFullName, signUpUrl,
-                    config);
+            long providerId = DatabaseUtils.updateProviderDb(getContentResolver(),
+                    providerName, providerFullName, signUpUrl, config);
             mPlugins.put(providerId, pluginInfo);
         }
     }
@@ -191,78 +209,6 @@ public class RemoteImService extends Service {
             Log.e(TAG, "Could not load config from the plugin", e);
         }
         return null;
-    }
-
-    private long updateProviderDb(String providerName, String providerFullName,
-            String signUpUrl, Map<String, String> config) {
-        long providerId = -1;
-        ContentResolver cr = getContentResolver();
-        String where = Im.Provider.NAME + "=?";
-        String[] selectionArgs = new String[]{providerName};
-        Cursor c = cr.query(Im.Provider.CONTENT_URI,
-                null /* projection */,
-                where,
-                selectionArgs,
-                null /* sort order */);
-        String pluginVersion = config.get(ImConfigNames.PLUGIN_VERSION);
-        boolean versionChanged;
-        try {
-            if (c.moveToFirst()) {
-                providerId = c.getLong(c.getColumnIndexOrThrow(Im.Provider._ID));
-                versionChanged = isPluginVersionChanged(cr, providerId, pluginVersion);
-                if (versionChanged) {
-                    // Update the full name, signup url and category each time when the plugin change
-                    // instead of specific version change because this is called only once.
-                    // It's ok to update them even the values are not changed.
-                    // Note that we don't update the provider name because it's used as
-                    // identifier at some place and the plugin should never change it.
-                    ContentValues values = new ContentValues(3);
-                    values.put(Im.Provider.FULLNAME, providerFullName);
-                    values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-                    values.put(Im.Provider.CATEGORY, "com.android.im.IMPS_CATEGORY");
-                    Uri uri = ContentUris.withAppendedId(Im.Provider.CONTENT_URI, providerId);
-                    cr.update(uri, values, null, null);
-                }
-            } else {
-                ContentValues values = new ContentValues(3);
-                values.put(Im.Provider.NAME, providerName);
-                values.put(Im.Provider.FULLNAME, providerFullName);
-                values.put(Im.Provider.CATEGORY, "com.android.im.IMPS_CATEGORY");
-                values.put(Im.Provider.SIGNUP_URL, signUpUrl);
-
-                Uri result = cr.insert(Im.Provider.CONTENT_URI, values);
-                providerId = ContentUris.parseId(result);
-                versionChanged = true;
-            }
-        } finally {
-            c.close();
-        }
-
-        if (versionChanged) {
-            ContentValues[] settingValues = new ContentValues[config.size()];
-
-            int index = 0;
-            for (Map.Entry<String, String> entry : config.entrySet()) {
-                ContentValues settingValue = new ContentValues();
-                settingValue.put(Im.ProviderSettings.PROVIDER, providerId);
-                settingValue.put(Im.ProviderSettings.NAME, entry.getKey());
-                settingValue.put(Im.ProviderSettings.VALUE, entry.getValue());
-                settingValues[index++] = settingValue;
-            }
-            cr.bulkInsert(Im.ProviderSettings.CONTENT_URI, settingValues);
-        }
-
-        return providerId;
-    }
-
-    private boolean isPluginVersionChanged(ContentResolver cr, long providerId,
-            String newVersion) {
-        String oldVersion = Im.ProviderSettings.getStringValue(cr, providerId,
-                ImConfigNames.PLUGIN_VERSION);
-        if (oldVersion == null) {
-            return true;
-        }
-        return !oldVersion.equals(newVersion);
     }
 
     @Override
@@ -352,6 +298,8 @@ public class RemoteImService extends Service {
         mNetworkConnectivityListener.unregisterHandler(mServiceHandler);
         mNetworkConnectivityListener.stopListening();
         mNetworkConnectivityListener = null;
+
+        unregisterReceiver(mSettingsMonitor);
     }
 
     @Override
@@ -420,6 +368,22 @@ public class RemoteImService extends Service {
 
     private boolean isNetworkAvailable() {
         return mNetworkConnectivityListener.getState() == State.CONNECTED;
+    }
+
+    private boolean isBackgroundDataEnabled() {
+        return mBackgroundDataEnabled;
+    }
+
+    private void setBackgroundData(boolean flag) {
+        mBackgroundDataEnabled = flag;
+    }
+
+    void handleBackgroundDataSettingChange(){
+        if (!isBackgroundDataEnabled()) {
+            for (ImConnectionAdapter conn : mConnections) {
+                conn.logout();
+            }
+        }
     }
 
     void networkStateChanged() {
@@ -519,7 +483,24 @@ public class RemoteImService extends Service {
             mStatusBarNotifier.dismissNotifications(providerId);
         }
 
+        public void dismissChatNotification(long providerId, String username) {
+            mStatusBarNotifier.dismissChatNotification(providerId, username);
+        }
     };
+
+    private final class SettingsMonitor extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED.equals(action)) {
+                ConnectivityManager manager =
+                    (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+                setBackgroundData(manager.getBackgroundDataSetting());
+                handleBackgroundDataSettingChange();
+            }
+        }
+    }
 
     private final class ServiceHandler extends Handler {
         public ServiceHandler() {

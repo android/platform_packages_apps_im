@@ -16,10 +16,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="im_label">"Chat"</string>
-    <string name="menu_add_account">"Konto hinzufügen"</string>
-    <string name="menu_edit_account">"Konto bearbeiten"</string>
-    <string name="menu_remove_account">"Konto entfernen"</string>
-    <string name="menu_sign_out_all">"Alle abmelden"</string>
     <string name="menu_cancel_signin">"Anmeldung abbrechen"</string>
     <string name="menu_add_contact">"Kontakt hinzufügen"</string>
     <string name="menu_remove_contact">"Kontakt löschen"</string>
@@ -28,7 +24,6 @@
     <string name="menu_view_accounts">"Liste der Konten"</string>
     <string name="menu_settings">"Einstellungen"</string>
     <string name="menu_start_chat">"Chat starten"</string>
-    <string name="menu_group_chat">"Gruppenchat starten..."</string>
     <string name="menu_sign_out">"Abmelden"</string>
     <string name="menu_view_profile">"Profil anzeigen"</string>
     <string name="menu_end_conversation">"Chat beenden"</string>
@@ -36,8 +31,7 @@
     <string name="menu_invite_contact">"Einladen..."</string>
     <string name="menu_switch_chats">"Chat wechseln"</string>
     <string name="menu_insert_smiley">"Smiley einfügen"</string>
-    <!-- no translation found for menu_plus (5000617247235760106) -->
-    <skip />
+    <string name="menu_plus">"Menü +"</string>
     <string name="default_input_title">"Eingabe"</string>
     <string name="confirm">"Bestätigen"</string>
     <string name="confirm_delete_contact">"Kontakt \"<xliff:g id="USER">%1$s</xliff:g>\" wird gelöscht."</string>
@@ -49,12 +43,7 @@
     <string name="no">"Abbrechen"</string>
     <string name="signed_out_prompt">"Sie wurden von <xliff:g id="ACCOUNT">%1$s</xliff:g> abgemeldet."</string>
     <string name="signed_out_prompt_with_error">"Sie wurden aus folgendem Grund von <xliff:g id="ACCOUNT">%1$s</xliff:g> abgemeldet: <xliff:g id="REASON">%2$s</xliff:g>."</string>
-    <string name="choose_account_title">"Chat - Konto auswählen"</string>
-    <string name="account_title">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-Konto:"</string>
-    <string name="one_conversation">"1 Chat"</string>
-    <string name="conversations">"<xliff:g id="COUNT">%1$d</xliff:g> Chats"</string>
     <string name="add_account">"<xliff:g id="ACCOUNT">%1$s</xliff:g>-Konto hinzufügen"</string>
-    <string name="add_account_title">"Chat - Konto hinzufügen"</string>
     <string name="label_username">"Benutzername:"</string>
     <string name="label_password">"Kennwort:"</string>
     <string name="remember_password">"Kennwort speichern"</string>
@@ -64,6 +53,14 @@
     <string name="sign_in">"Anmelden"</string>
     <string name="signing_in_to">"Anmeldung bei <xliff:g id="ACCOUNT">%1$s</xliff:g> wird ausgeführt."</string>
     <string name="signing_in_wait">"Anmeldung wird ausgeführt..."</string>
+    <!-- no translation found for bg_data_prompt_title (4861800723853178111) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_message (2343305645142823544) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_ok (3443385427882751532) -->
+    <skip />
+    <!-- no translation found for bg_data_prompt_cancel (7206105589826174638) -->
+    <skip />
     <string name="ongoing_conversation">"Derzeit ausgeführte Chats (<xliff:g id="NUMBER">%1$d</xliff:g>)"</string>
     <string name="online_count">"<xliff:g id="NUMBER">%1$d</xliff:g> online"</string>
     <string name="subscriptions">"Freundschaftseinladungen"</string>
@@ -92,7 +89,6 @@
     <string name="cir_channel_label">"CIR-Kanal"</string>
     <string name="host_label">"Host"</string>
     <string name="msisdn_label">"MSISDN"</string>
-    <string name="client_id_label">"Client-ID"</string>
     <string name="http">"HTTP"</string>
     <string name="sms">"SMS"</string>
     <string name="tcp">"TCP"</string>
@@ -101,13 +97,14 @@
     <string name="save">"Speichern"</string>
     <string name="chat_with">"Mit <xliff:g id="USER">%1$s</xliff:g> chatten"</string>
     <string name="me">"Eigene"</string>
+    <string name="compose_hint">"Zum Erstellen eintippen"</string>
     <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> ist online."</string>
     <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> ist abwesend."</string>
     <string name="contact_busy">"<xliff:g id="USER">%1$s</xliff:g> ist beschäftigt."</string>
     <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> ist offline."</string>
     <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> hat Teilnahme begonnen."</string>
     <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> hat Chat verlassen."</string>
-    <string name="time_stamp">"\'Gesendet\' hh:mm a \'am\' EEEE"</string>
+    <string name="time_stamp" format="date">"'Gesendet um '<xliff:g id="HOUR">hh</xliff:g>':'<xliff:g id="MINUTE">mm</xliff:g>' '<xliff:g id="AMPM">a</xliff:g>' am '<xliff:g id="DATE">EEEE</xliff:g>"</string>
     <string name="send">"Senden"</string>
     <string name="msg_sent_failed">"Die Nachricht kann nicht gesendet werden."</string>
     <string name="disconnected_warning">"Verbindung zum Server getrennt. Nachrichten werden gesendet, sobald eine Online-Verbindung besteht."</string>
@@ -117,8 +114,7 @@
     <string name="empty_chat_list">"Keine aktiven Chats"</string>
     <string name="add_contact_title">"Kontakt hinzufügen"</string>
     <string name="input_contact_label">"E-Mail-Adresse der Person, die Sie einladen möchten:"</string>
-    <!-- no translation found for choose_list_label (1430489448508574145) -->
-    <skip />
+    <string name="choose_list_label">"Liste auswählen:"</string>
     <string name="invite_instruction">"Geben Sie einen Namen ein, der aus den Kontakten hinzugefügt werden soll."</string>
     <string name="invite_label">"Einladung senden"</string>
     <string name="setting_title">"Allgemeine Einstellungen"</string>
@@ -131,7 +127,6 @@
     <string name="notification_sound_title">"Ton"</string>
     <string name="notification_sound_summary">"Bei Nachrichteneingang Klingelton wiedergeben"</string>
     <string name="notification_ringtone_title">"Klingelton auswählen"</string>
-    <string name="invitation_title">"Einladung"</string>
     <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> hat Sie zu einem Gruppenchat eingeladen."</string>
     <string name="invitation_sent_prompt">"Einladung wurde an <xliff:g id="USER">%1$s</xliff:g> gesendet."</string>
     <string name="accept_invitation">"Annehmen"</string>
@@ -158,7 +153,6 @@
     <string name="block_contact_failed">"Kontakt wurde nicht blockiert."</string>
     <string name="unblock_contact_failed">"Blockierung des Kontakts wurde nicht aufgehoben."</string>
     <string name="select_contact">"Wählen Sie zunächst einen Kontakt aus."</string>
-    <string name="select_chat_session">"Wählen Sie eine Chat-Sitzung aus."</string>
     <string name="disconnected">"Getrennt"\n</string>
     <string name="service_error">"Servicefehler"</string>
     <string name="load_contact_list_failed">"Kontaktliste wurde nicht geladen."</string>

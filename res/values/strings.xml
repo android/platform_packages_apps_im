@@ -22,22 +22,6 @@
     Home screen. This is a noun. -->
     <string name="im_label">IM</string>
 
-    <!-- Landing page screen menu and context menu items. -->
-    <!-- Context/drop-down menu item for the landing page. The context menu is
-    displayed when the user long clicks on a provider in the landing page. It lets the user
-    to setup a new account for a IM service.-->
-    <string name="menu_add_account">Add account</string>
-    <!-- Context/drop-down menu item for the landing page. The context menu is
-    displayed when the user long clicks on a provider in the landing page. It lets the user
-    to edit the account setting for a IM service.-->
-    <string name="menu_edit_account">Edit account</string>
-    <!-- Context/drop-down menu item for the landing page. The context menu is
-    displayed when the user long clicks on a provider in the landing page. It lets the user
-    to remove the account.-->
-    <string name="menu_remove_account">Remove account</string>
-    <!-- Screen menu item on the landing page to sign out all service.-->
-    <string name="menu_sign_out_all">Sign out all</string>
-
     <!-- Sign in progress screen menu items.-->
     <!-- Screen menu item on the sign-in progress screen. It allows the user to cancel signing in.-->
     <string name="menu_cancel_signin">Cancel signin</string>
@@ -66,8 +50,6 @@
     displayed when the user long clicks on a contact in the contact list. It lets the user to
     start a chat with a friend. May be overried by the plugin.-->
     <string name="menu_start_chat">Start chat</string>
-    <!-- Screen menu item on the contact list to start a group chat. Currently not used.-->
-    <string name="menu_group_chat">Start group chat\u2026</string>
     <!-- Screen menu item on the contact list to sign out the service.-->
     <string name="menu_sign_out">Sign out</string>
     <!-- Context/drop-down menu item for the contact list screen. The context menu is
@@ -125,19 +107,8 @@
     <string name="signed_out_prompt_with_error">You have been signed out of <xliff:g id="account">%1$s</xliff:g> because <xliff:g id="reason">%2$s</xliff:g>.</string>
 
     <!-- These strings displayed on the landing page. -->
-    <!-- The title of the landing page where you can choose which IM service you want to use.-->
-    <string name="choose_account_title">Chat - Select an account</string>
-    <!-- The account label on the landing page e.g. "AIM account:", if there is an account.-->
-    <string name="account_title"><xliff:g id="account">%1$s</xliff:g> account:</string>
-    <!-- Displays if there is only one ongoing chat on the landing page.-->
-    <string name="one_conversation">1 chat</string>
-    <!-- Displays the number of ongoing chats on the landing page.-->
-    <string name="conversations"><xliff:g id="count">%1$d</xliff:g> chats</string>
     <!-- The add account label on the landing page. This is displayed when the user hasn't setup an account of the IM service.-->
     <string name="add_account">Add <xliff:g id="account">%1$s</xliff:g> account</string>
-
-    <!-- The title of the add account screen which let the user to setup a new account for the IM service.-->
-    <string name="add_account_title">Chat - Add an account</string>
 
     <!-- These strings are displayed on the account setup page. -->
     <!-- The username label. May be overrided by the plugin.-->
@@ -160,6 +131,21 @@
     <string name="signing_in_to">Signing in to <xliff:g id="account">%1$s</xliff:g></string>
     <!-- This is the progress/status text displayed in the middle of the sign-in progress screen. -->
     <string name="signing_in_wait">Signing in\u2026</string>
+    <!-- Dialog title -->
+    <!-- This is the title for the background data prompt dialog, asking the user whether
+    to enable the background data if it is disabled when launch the IM app -->
+    <string name="bg_data_prompt_title">Background data disabled</string>
+    <!-- Dialog messages: -->
+    <!-- This is the message displayed in the prompt dialog when we launch IM but found
+    the background data is disabled -->
+    <string name="bg_data_prompt_message">
+         <xliff:g id="provider">%1$s</xliff:g> needs background data to be enabled.
+    </string>
+    <!-- Dialog buttons: -->
+    <!-- OK button for the prompt dialog -->
+    <string name="bg_data_prompt_ok">Enable</string>
+    <!-- Cancel button for the prompt dialog -->
+    <string name="bg_data_prompt_cancel">Quit</string>
 
     <!-- These strings are displayed on the contact list page. -->
     <!-- The title of the ongoing chat group. May be overrided by the plugin.-->
@@ -224,7 +210,6 @@
     <string name="cir_channel_label">CIR channel</string>
     <string name="host_label">Host</string>
     <string name="msisdn_label">MSISDN</string>
-    <string name="client_id_label">Client ID</string>
     <string name="http">HTTP</string>
     <string name="sms">SMS</string>
     <string name="tcp">TCP</string>
@@ -237,6 +222,9 @@
     <string name="chat_with">Chat with <xliff:g id="user">%1$s</xliff:g></string>
     <!-- In the chat history list, this label is added before the chats the user typed -->
     <string name="me">Me</string>
+    <!-- On the chat screen, this is the hint text in the input field where the user enters the
+    chat. This needs to fit in both portrait and landscape mode -->
+    <string name="compose_hint">Type to compose</string>    
     <!-- Inline status message in the chat history list, when receiving a "online" status update. -->
     <string name="contact_online"><xliff:g id="user">%1$s</xliff:g> is online</string>
     <!-- Inline status message in the chat history list, when receiving an "away" status update. -->
@@ -250,7 +238,7 @@
     <!-- Inline status message in the chat history list, when a friend left the chat. -->
     <string name="contact_left"><xliff:g id="user">%1$s</xliff:g> has left</string>
     <!-- Inline time stamp status in the chat history list. The timestamp formatting maybe different for different locales.-->
-    <string name="time_stamp">\'Sent at\' hh:mm a \'on\' EEEE</string>
+    <string name="time_stamp" format="date">\'Sent at\' <xliff:g id="hour">hh</xliff:g>:<xliff:g id="minute">mm</xliff:g> <xliff:g id="ampm">a</xliff:g> \'on\' <xliff:g id="date">EEEE</xliff:g></string>
     <!-- The send button on the chat screen. -->
     <string name="send">Send</string>
     <!-- Error message when a chat failed to be sent.-->
@@ -303,8 +291,6 @@
     <string name="notification_ringtone_title">Select ringtone</string>
 
     <!-- Group chat invitation screen (Currently not used.) -->
-    <!-- The title of the group chat invitation. -->
-    <string name="invitation_title">Invitation</string>
     <!-- The prompt message displayed on the group chat invitation screen.-->
     <string name="invitation_prompt"><xliff:g id="user">%1$s</xliff:g> has invited you to join a group chat.</string>
     <!-- Toast when group chat invitation has been sent to the contact.-->
@@ -369,8 +355,6 @@
     <string name="unblock_contact_failed">Contact was not unblocked.</string>
     <!-- Error message for when the user didn't select a contact as required.-->
     <string name="select_contact">Please select a contact first.</string>
-    <!-- Error message for when the user didn't select a chat as required.-->
-    <string name="select_chat_session">Please select a chat session.</string>
     <!-- Error message for when the current connection disconnected.-->
     <string name="disconnected">Disconnected!\n</string>
     <!-- Error message for when the IM service has died.-->

@@ -22,7 +22,7 @@
     <string name="menu_start_chat">"Envoyer un message instantané"</string>
     <string name="menu_view_profile">"Infos sur le contact"</string>
     <string name="menu_end_conversation">"Terminer la conversation"</string>
-    <string name="menu_switch_chats">"Basculer entre les conversations"</string>
+    <string name="menu_switch_chats">"Changer de chat"</string>
     <string name="menu_insert_smiley">"Insérer une émoticône"</string>
     <string name="sign_up">"Créer un nouveau compte"</string>
     <string name="check_save_password">"Pour votre sécurité, en cas de vol ou de perte de votre téléphone, rendez-vous sur le site Web depuis votre ordinateur et modifiez votre mot de passe."</string>
@@ -40,8 +40,8 @@
     <item>"Clin d\'œil"</item>
     <item>"Tire la langue"</item>
     <item>"Surpris"</item>
-    <item>"Bisous"</item>
-    <item>"Crier"</item>
+    <item>"Bisou"</item>
+    <item>"Hurle"</item>
     <item>"Cool"</item>
     <item>"Argent"</item>
     <item>"Embarrassé"</item>
@@ -50,7 +50,7 @@
     <item>"Indécis"</item>
     <item>"Pleure"</item>
     <item>"Motus et bouche cousue"</item>
-    <item>"Rire"</item>
+    <item>"Rigole"</item>
     <item>"Confus"</item>
   </string-array>
   <string-array name="smiley_texts">

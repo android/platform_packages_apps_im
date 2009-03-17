@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"연락처 추가"</string>
+    <string name="menu_remove_contact">"연락처 삭제"</string>
+    <string name="menu_block_contact">"차단"</string>
+    <string name="menu_contact_list">"연락처 목록"</string>
+    <string name="menu_start_chat">"IM 보내기"</string>
+    <string name="menu_view_profile">"친구정보"</string>
+    <string name="menu_end_conversation">"대화종료"</string>
+    <string name="menu_switch_chats">"채팅 전환"</string>
+    <string name="menu_insert_smiley">"이모티콘 삽입"</string>
+    <string name="sign_up">"새 계정 만들기"</string>
+    <string name="check_save_password">"전화기를 잃어버렸거나 도난당한 경우에는 보안을 위해 컴퓨터에서 웹사이트를 방문하여 비밀번호를 변경하세요."</string>
+    <string name="buddy_list_title">"연락처 목록 - <xliff:g id="USERNAME">%1$s</xliff:g>"</string>
+    <string name="label_username">"사용자 이름:"</string>
+    <string name="ongoing_conversation">"대화(<xliff:g id="NUMBER">%1$d</xliff:g>명)"</string>
+    <string name="contact_profile_title">"연락처 정보"</string>
+    <string name="presence_available">"대화가능"</string>
+    <string name="add_contact_title">"연락처 추가"</string>
+    <string name="input_contact_label">"추가할 사람의 대화명:"</string>
+    <string name="invite_label">"친구추가"</string>
+  <string-array name="smiley_names">
+    <item>"행복"</item>
+    <item>"슬픔"</item>
+    <item>"윙크"</item>
+    <item>"메롱"</item>
+    <item>"놀람"</item>
+    <item>"키스"</item>
+    <item>"소리 지름"</item>
+    <item>"멋짐"</item>
+    <item>"욕심"</item>
+    <item>"부끄러움"</item>
+    <item>"당황"</item>
+    <item>"천사"</item>
+    <item>"우유부단"</item>
+    <item>"울음"</item>
+    <item>"입막음"</item>
+    <item>"웃음"</item>
+    <item>"어리둥절"</item>
+  </string-array>
+  <string-array name="smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>

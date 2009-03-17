@@ -79,4 +79,9 @@ interface IChatSession {
      * Sends a message to all participants in this ChatSession.
      */
     void sendMessage(String text);
+
+    /**
+     * Mark this chat session as read.
+     */
+    void markAsRead();
 }

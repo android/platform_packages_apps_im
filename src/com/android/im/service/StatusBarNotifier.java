@@ -27,15 +27,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.Im;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.im.R;
 import com.android.im.app.ContactListActivity;
+import com.android.im.app.NewChatActivity;
 
 public class StatusBarNotifier {
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
+
+    private static final long SUPPRESS_SOUND_INTERVAL_MS = 3000L;
 
     static final long[] VIBRATE_PATTERN = new long[] {0, 250, 250, 250};
 
@@ -45,6 +49,7 @@ public class StatusBarNotifier {
     private HashMap<Long, Im.ProviderSettings.QueryMap> mSettings;
     private Handler mHandler;
     private HashMap<Long, NotificationInfo> mNotificationInfos;
+    private long mLastSoundPlayedMs;
 
     public StatusBarNotifier(Context context) {
         mContext = context;
@@ -62,7 +67,7 @@ public class StatusBarNotifier {
     }
 
     public void notifyChat(long providerId, long accountId, long chatId,
-            String username, String nickname, String msg) {
+            String username, String nickname, String msg, boolean lightWeightNotify) {
         if (!isNotificationEnabled(providerId)) {
             if (DBG) log("notification for chat " + username + " is not enabled");
             return;
@@ -73,7 +78,7 @@ public class StatusBarNotifier {
         Intent intent = new Intent(Intent.ACTION_VIEW,
                 ContentUris.withAppendedId(Im.Chats.CONTENT_URI, chatId));
         intent.addCategory(com.android.im.app.ImApp.IMPS_CATEGORY);
-        notify(username, title, snippet, msg, providerId, accountId, intent);
+        notify(username, title, snippet, msg, providerId, accountId, intent, lightWeightNotify);
     }
 
     public void notifySubscriptionRequest(long providerId, long accountId,
@@ -88,7 +93,7 @@ public class StatusBarNotifier {
                 ContentUris.withAppendedId(Im.Contacts.CONTENT_URI, contactId));
         intent.putExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, providerId);
         intent.putExtra(ImServiceConstants.EXTRA_INTENT_FROM_ADDRESS, username);
-        notify(username, title, message, message, providerId, accountId, intent);
+        notify(username, title, message, message, providerId, accountId, intent, false);
     }
 
     public void notifyGroupInvitation(long providerId, long accountId,
@@ -100,7 +105,7 @@ public class StatusBarNotifier {
         String title = mContext.getString(R.string.notify_groupchat_label);
         String message = mContext.getString(
                 R.string.group_chat_invite_notify_text, username);
-        notify(username, title, message, message, providerId, accountId, intent);
+        notify(username, title, message, message, providerId, accountId, intent, false);
     }
 
     public void dismissNotifications(long providerId) {
@@ -136,7 +141,7 @@ public class StatusBarNotifier {
                             " mIntent=" + info.getIntent());
                 }
                 mNotificationManager.notify(info.computeNotificationId(),
-                        info.createNotification(""));
+                        info.createNotification("", true));
             }
         }
     }
@@ -157,7 +162,7 @@ public class StatusBarNotifier {
     }
 
     private void notify(String sender, String title, String tickerText, String message,
-            long providerId, long accountId, Intent intent) {
+            long providerId, long accountId, Intent intent, boolean lightWeightNotify) {
         NotificationInfo info;
         synchronized (mNotificationInfos) {
             info = mNotificationInfos.get(providerId);
@@ -169,7 +174,7 @@ public class StatusBarNotifier {
         }
 
         mNotificationManager.notify(info.computeNotificationId(),
-                info.createNotification(tickerText));
+                info.createNotification(tickerText, lightWeightNotify));
     }
 
     private void setRinger(long providerId, Notification notification) {
@@ -178,6 +183,10 @@ public class StatusBarNotifier {
         boolean vibrate = settings.getVibrate();
 
         notification.sound = TextUtils.isEmpty(ringtoneUri) ? null : Uri.parse(ringtoneUri);
+        if (notification.sound != null) {
+            mLastSoundPlayedMs = SystemClock.elapsedRealtime();
+        }
+
         if (DBG) log("setRinger: notification.sound = " + notification.sound);
 
         if (vibrate) {
@@ -234,17 +243,20 @@ public class StatusBarNotifier {
             return false;
         }
 
-        public Notification createNotification(String tickerText) {
+        public Notification createNotification(String tickerText, boolean lightWeightNotify) {
             Notification notification = new Notification(
                     android.R.drawable.stat_notify_chat,
-                    tickerText, System.currentTimeMillis());
+                    lightWeightNotify ? null : tickerText,
+                    System.currentTimeMillis());
 
             Intent intent = getIntent();
 
             notification.setLatestEventInfo(mContext, getTitle(), getMessage(),
                     PendingIntent.getActivity(mContext, 0, intent, 0));
             notification.flags |= Notification.FLAG_AUTO_CANCEL;
-            setRinger(mProviderId, notification);
+            if (!(lightWeightNotify || shouldSuppressSoundNotification())) {
+                setRinger(mProviderId, notification);
+            }
             return notification;
         }
 
@@ -253,6 +265,16 @@ public class StatusBarNotifier {
             intent.setType(Im.Contacts.CONTENT_TYPE);
             intent.setClass(mContext, ContactListActivity.class);
             intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, mAccountId);
+
+            return intent;
+        }
+
+        private Intent getMultipleNotificationIntent() {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setClass(mContext, NewChatActivity.class);
+            intent.putExtra(ImServiceConstants.EXTRA_INTENT_PROVIDER_ID, mProviderId);
+            intent.putExtra(ImServiceConstants.EXTRA_INTENT_ACCOUNT_ID, mAccountId);
+            intent.putExtra(ImServiceConstants.EXTRA_INTENT_SHOW_MULTIPLE, true);
             return intent;
         }
 
@@ -283,11 +305,13 @@ public class StatusBarNotifier {
 
         public Intent getIntent() {
             int count = mItems.size();
-            if (count == 1) {
-            Item item = mItems.values().iterator().next();
+            if (count == 0) {
+                return getDefaultIntent();
+            } else if (count == 1) {
+                Item item = mItems.values().iterator().next();
                 return item.mIntent;
             } else {
-                return getDefaultIntent();
+                return getMultipleNotificationIntent();
             }
         }
     }
@@ -296,4 +320,7 @@ public class StatusBarNotifier {
         Log.d(RemoteImService.TAG, "[StatusBarNotify] " + msg);
     }
 
+    private boolean shouldSuppressSoundNotification() {
+        return (SystemClock.elapsedRealtime() - mLastSoundPlayedMs < SUPPRESS_SOUND_INTERVAL_MS);
+    }
 }
