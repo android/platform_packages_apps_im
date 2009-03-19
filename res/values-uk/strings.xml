@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="im_label">"Чат"</string>
+    <string name="menu_add_account">"Добавити обліковий запис"</string>
+    <string name="menu_edit_account">"Змінити обліковий запис"</string>
+    <string name="menu_remove_account">"Видалити аккаунт"</string>
+    <string name="menu_sign_out_all">"Вийти із всіх"</string>
+    <string name="menu_cancel_signin">"Відмінити вхід"</string>
+    <string name="menu_add_contact">"Добавити знайомого"</string>
+    <string name="menu_remove_contact">"Видалити контакт"</string>
+    <string name="menu_block_contact">"Заблокувати знайомого"</string>
+    <string name="menu_view_blocked">"Блокування"</string>
+    <string name="menu_view_accounts">"Список облікових записів"</string>
+    <string name="menu_settings">"Налаштування"</string>
+    <string name="menu_start_chat">"Розпочати чат"</string>
+    <string name="menu_group_chat">"Розпочати  груповий чат…"</string>
+    <string name="menu_sign_out">"Вийти"</string>
+    <string name="menu_view_profile">"Переглянути профіль"</string>
+    <string name="menu_end_conversation">"Закінчити чат"</string>
+    <string name="menu_view_contact_list">"Список контактів"</string>
+    <string name="menu_invite_contact">"Запросити…"</string>
+    <string name="menu_switch_chats">"Переключити чат"</string>
+    <string name="menu_insert_smiley">"Вставити смайлик"</string>
+    <!-- no translation found for menu_plus (5000617247235760106) -->
+    <skip />
+    <string name="default_input_title">"Ввід"</string>
+    <string name="confirm">"Підтвердження"</string>
+    <string name="confirm_delete_contact">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" буде видалено."</string>
+    <string name="confirm_block_contact">"Знайомий \"<xliff:g id="USER">%1$s</xliff:g>\" буде заблоковано."</string>
+    <string name="confirm_unblock_contact">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" буде розблоковано."</string>
+    <string name="ok">"ОК"</string>
+    <string name="cancel">"Відмінити"</string>
+    <string name="yes">"ОК"</string>
+    <string name="no">"Відмінити"</string>
+    <string name="signed_out_prompt">"Виконано вихід із облікового запису<xliff:g id="ACCOUNT">%1$s</xliff:g>."</string>
+    <string name="signed_out_prompt_with_error">"Виконано вихід із облікового запису<xliff:g id="ACCOUNT">%1$s</xliff:g> через наступну причину: <xliff:g id="REASON">%2$s</xliff:g>."</string>
+    <string name="choose_account_title">"Чат – вибрати обліковий запис"</string>
+    <string name="account_title">"Обліковий запис<xliff:g id="ACCOUNT">%1$s</xliff:g>:"</string>
+    <string name="one_conversation">"1 чат"</string>
+    <string name="conversations">"Чатів: <xliff:g id="COUNT">%1$d</xliff:g>"</string>
+    <string name="add_account">"Добавити обліковий запис<xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="add_account_title">"Чат – добавити обліковий запис"</string>
+    <string name="label_username">"Ім'я користувача:"</string>
+    <string name="label_password">"Пароль:"</string>
+    <string name="remember_password">"Запам'ятати пароль."</string>
+    <string name="keep_me_signed_in">"Входити автоматично."</string>
+    <string name="sign_up">"Немає облікового запису?"</string>
+    <string name="check_auto_sign_in">"Цей параметр автоматично виконує вхід при відкритті даного додатку. Щоб відключити його, виконайте вихід і зніміть прапорець \"Входити автоматично\"."</string>
+    <string name="sign_in">"Увійти"</string>
+    <string name="signing_in_to">"Вхід в обліковий запис <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="signing_in_wait">"Виконується вхід…"</string>
+    <string name="ongoing_conversation">"Відкрито чатів: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="online_count">"В мережі: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="subscriptions">"Пропозиція дружби"</string>
+    <string name="unknown_contact">"("<i>"Невідомо"</i>")"</string>
+    <string name="empty_contact_group">"Пусто"</string>
+    <string name="empty_conversation_group">"Немає розмов"</string>
+    <string name="contacts_picker_title">"Вибрати контакт(и) для запрошення"</string>
+    <string name="contact_filter_hint">"Розпочніть ввід для пошуку контакту"</string>
+    <string name="empty_contact_list">"Контакти не знайдено."</string>
+    <string name="blocked_list_title">"Заблоковані контакти – <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="no_blocked_contact">"Немає заблокованих контактів."</string>
+    <string name="contact_profile_title">"Профіль контакту"</string>
+    <string name="label_status">"Стан:"</string>
+    <string name="label_client_type">"Тип клієнта:"</string>
+    <string name="client_type_computer">"Комп'ютер"</string>
+    <string name="client_type_mobile">"Мобільний"</string>
+    <string name="presence_available">"В мережі"</string>
+    <string name="presence_busy">"Зайнято"</string>
+    <string name="presence_away">"Немає на місці"</string>
+    <string name="presence_idle">"Не активний"</string>
+    <string name="presence_offline">"Не в мережі"</string>
+    <string name="presence_invisible">"Невидимий"</string>
+    <string name="preference_title">"<xliff:g id="PROVIDER">%1$s</xliff:g> settings (dev only)"</string>
+    <string name="data_channel_label">"Канал даних"</string>
+    <string name="data_encoding_label">"Кодування даних"</string>
+    <string name="cir_channel_label">"Канал CIR"</string>
+    <string name="host_label">"Хост"</string>
+    <string name="msisdn_label">"MSISDN"</string>
+    <string name="client_id_label">"Ідентифікатор клієнта"</string>
+    <string name="http">"HTTP"</string>
+    <string name="sms">"SMS"</string>
+    <string name="tcp">"TCP"</string>
+    <string name="xml">"XML"</string>
+    <string name="wbxml">"WBXML"</string>
+    <string name="save">"Зберегти"</string>
+    <string name="chat_with">"Чат: <xliff:g id="USER">%1$s</xliff:g>"</string>
+    <string name="me">"Я"</string>
+    <string name="contact_online">"<xliff:g id="USER">%1$s</xliff:g> в мережі"</string>
+    <string name="contact_away">"<xliff:g id="USER">%1$s</xliff:g> відсутній"</string>
+    <string name="contact_busy">"Користувач <xliff:g id="USER">%1$s</xliff:g> зайнятий"</string>
+    <string name="contact_offline">"<xliff:g id="USER">%1$s</xliff:g> не в мережі"</string>
+    <string name="contact_joined">"<xliff:g id="USER">%1$s</xliff:g> в чаті"</string>
+    <string name="contact_left">"<xliff:g id="USER">%1$s</xliff:g> не в чаті"</string>
+    <string name="time_stamp">"\"Відправлено в\" год:хв EEEE"</string>
+    <string name="send">"Відправити"</string>
+    <string name="msg_sent_failed">"Не вдалося відправити повідомлення."</string>
+    <string name="disconnected_warning">"Підключення до серверу перервано. Повідомлення будуть відправлені при підключенні до Інтернету."</string>
+    <string name="contact_offline_warning">"<xliff:g id="USER_0">%1$s</xliff:g> не в сети. Повідомлення будуть доставлені, коли <xliff:g id="USER_1">%1$s</xliff:g> увійде в мережу."</string>
+    <string name="contact_not_in_list_warning">"<xliff:g id="USER">%1$s</xliff:g> не у вашому списку контактів."</string>
+    <string name="select_link_title">"Оберіть ссилку"</string>
+    <string name="empty_chat_list">"Немає активних чатів."</string>
+    <string name="add_contact_title">"Добавити знайомого"</string>
+    <string name="input_contact_label">"Адрес електронної пошти запрошуючого:"</string>
+    <!-- no translation found for choose_list_label (1430489448508574145) -->
+    <skip />
+    <string name="invite_instruction">"Введіть ім'я для добавлення із контактів."</string>
+    <string name="invite_label">"Відправити запрошення"</string>
+    <string name="setting_title">"Загальні налаштування"</string>
+    <string name="hide_offline_contacts">"Приховати тих, хто не в мережі"</string>
+    <string name="notification_group_title">"Налаштування сповіщень"</string>
+    <string name="notification_enabled_title">"Сповіщення чату"</string>
+    <string name="notification_enabled_summary">"Сповіщати про нові повідомлення в строці стану"</string>
+    <string name="notification_vibrate_title">"Вібрація"</string>
+    <string name="notification_vibrate_summary">"Вібрувати при отриманні повідомлення в чаті"</string>
+    <string name="notification_sound_title">"Звук"</string>
+    <string name="notification_sound_summary">"Програвати мелодію дзвінка при отриманні повідомлення в чаті"</string>
+    <string name="notification_ringtone_title">"Вибрати мелодію дзвінка"</string>
+    <string name="invitation_title">"Запрошення"</string>
+    <string name="invitation_prompt">"<xliff:g id="USER">%1$s</xliff:g> запрошує вас в груповий чат."</string>
+    <string name="invitation_sent_prompt">"Запрошення відправлено користувачу <xliff:g id="USER">%1$s</xliff:g>."</string>
+    <string name="accept_invitation">"Прийняти"</string>
+    <string name="decline_invitation">"Відхилити"</string>
+    <string name="subscription_prompt">"<xliff:g id="USER">%1$s</xliff:g> запрошує вас у свій список знайомих."</string>
+    <string name="approve_subscription">"Прийняти"</string>
+    <string name="decline_subscription">"Відхилити"</string>
+    <string name="approve_subscription_error">"Неможливо прийняти підписку користувача <xliff:g id="USER">%1$s</xliff:g>. Повторіть спробу пізніше."</string>
+    <string name="decline_subscription_error">"Неможливо відхилити підписку користувача <xliff:g id="USER">%1$s</xliff:g>. Повторіть спробу пізніше."</string>
+    <string name="newMessages_label">"Нові повідомлення від <xliff:g id="PROVIDER">%1$s</xliff:g>"</string>
+    <string name="num_unread_chats">"Непрочитані чати: <xliff:g id="NUMBER">%1$d</xliff:g>"</string>
+    <string name="subscription_notify_text">"Пропозиція дружби від користувача <xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="notify_groupchat_label">"Запрошення в груповий чат"</string>
+    <string name="group_chat_invite_notify_text">"Нове запрошення в чат від користувача<xliff:g id="USER">%s</xliff:g>"</string>
+    <string name="add_contact_success">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" добавлений."</string>
+    <string name="delete_contact_success">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" видалений."</string>
+    <string name="block_contact_success">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" заблокований."</string>
+    <string name="unblock_contact_success">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" розблокований."</string>
+    <string name="perm_label">"запустити службу чату"</string>
+    <string name="perm_desc">"Дозволяє додаткам при необхідності запустити службу чату."</string>
+    <string name="error">"Увага "</string>
+    <string name="login_service_failed">"Не вдалося увійти в службу <xliff:g id="SERVICE">%1$s</xliff:g>. Повторіть спробу пізніше."\n"(Детальніше: <xliff:g id="DESCRIPTION">%2$s</xliff:g>)"</string>
+    <string name="add_list_failed">"Список не був добавлений."</string>
+    <string name="block_contact_failed">"Контакт не був заблокований."</string>
+    <string name="unblock_contact_failed">"Контакт не був розблокований."</string>
+    <string name="select_contact">"Спочатку виберіть контакт."</string>
+    <string name="select_chat_session">"Виберіть сеанс чату."</string>
+    <string name="disconnected">"Підключення перервано!"\n</string>
+    <string name="service_error">"Помилка служби!"</string>
+    <string name="load_contact_list_failed">"Список контактів не завантажено."</string>
+    <string name="cant_connect_to_server">"Неможливо підключитися до серверу. Перевірте підключення."</string>
+    <string name="contact_already_exist">"<xliff:g id="USER">%1$s</xliff:g> вже є у вашому списку знайомих."</string>
+    <string name="contact_blocked">"Контакт \"<xliff:g id="USER">%1$s</xliff:g>\" заблоковано."</string>
+    <string name="contact_not_loaded">"Почекайте завантаження списку контактів."</string>
+    <string name="network_error">"Виникла помилка в мережі."</string>
+    <string name="service_not_support">"Сервер не підтримує цю можливість."</string>
+    <string name="invalid_password">"Вказано недійсний пароль."</string>
+    <string name="internal_server_error">"На сервері виникла помилка."</string>
+    <string name="not_implemented">"Сервер не підтримує цю можливість."</string>
+    <string name="service_unavaiable">"Сервер зараз недоступний."</string>
+    <string name="timeout">"Тайм-аут серверу."</string>
+    <string name="version_not_supported">"Сервер не підтримує дану версію."</string>
+    <string name="message_queue_full">"Черга повідомлень повна."</string>
+    <string name="domain_not_supported">"Сервер не підтримує пересилання домену."</string>
+    <string name="unknown_user">"Вказане ім'я користувача не розпізнано."</string>
+    <string name="recipient_blocked_the_user">"На жаль, цей користувач вас заблокував."</string>
+    <string name="session_expired">"Сеанс застарів, увійдіть знову."</string>
+    <string name="forced_logout">"ви увійшли із іншого клієнта."</string>
+    <string name="already_logged_in">"ви вже увійшли із іншого клієнта."</string>
+    <string name="msisdn_error">"На жаль, не вдається вважати телефонний номер з SIM-карти. Зверніться за справкою до свого оператора."</string>
+    <string name="not_signed_in">"Вы пока не выполнили вход."</string>
+    <string name="general_error">"Код помилки <xliff:g id="CODE">%1$d</xliff:g>"</string>
+  <string-array name="default_smiley_names">
+    <item>"Щастя"</item>
+    <item>"Сумно"</item>
+    <item>"Підморгую"</item>
+    <item>"Висунутий язик"</item>
+    <item>"Здивування"</item>
+    <item>"Цілую"</item>
+    <item>"Кричу"</item>
+    <item>"Круто"</item>
+    <item>"Знаю, що говорю"</item>
+    <item>"Мовчу"</item>
+    <item>"Засоромлений"</item>
+    <item>"Ангел"</item>
+    <item>"Сумніваючись"</item>
+    <item>"Плачу"</item>
+    <item>"Нікому не скажу"</item>
+    <item>"Смішно"</item>
+    <item>"Розгублений"</item>
+  </string-array>
+  <string-array name="default_smiley_texts">
+    <item>":-)"</item>
+    <item>":-("</item>
+    <item>";-)"</item>
+    <item>":-P"</item>
+    <item>"=-O"</item>
+    <item>":-*"</item>
+    <item>":O"</item>
+    <item>"B-)"</item>
+    <item>":-$"</item>
+    <item>":-!"</item>
+    <item>":-["</item>
+    <item>"O:-)"</item>
+    <item>":-\\"</item>
+    <item>":\'("</item>
+    <item>":-X"</item>
+    <item>":-D"</item>
+    <item>"o_O"</item>
+  </string-array>
+</resources>
+
