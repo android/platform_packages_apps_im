@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2007-2008 Esmertec AG.
+ * Copyright (C) 2007-2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- The application label. This appears in the application launcher on the
+    Home screen. This is a noun. -->
+    <string name="im_label">"Миттєві повідомлення"</string>
+
+    <!-- Sign in progress screen menu items.-->
+    <!-- Screen menu item on the sign-in progress screen. It allows the user to cancel signing in.-->
+    <string name="menu_cancel_signin">"Відмінити вхід"</string>
+
+    <!--Contact list screen menu and context menu items.-->
+    <!-- This is a screen menu item for the Contact List Screen. It lets the
+    user to add a friend to the friend list. May be overrided by the plugin.-->
+    <string name="menu_add_contact">"Додати контакт"</string>
+    <!-- Context/drop-down menu item for the Contact List Screen. The context menu is
+    displayed when the user long clicks on a contact in the contact list. It lets the user to
+    remove a contact from the list. May be overrided by the plugin.-->
+    <string name="menu_remove_contact">"Видалити контакт"</string>
+    <!-- Context/drop-down menu item for the Contact List Screen. The context menu is
+    displayed when the user long clicks on a contact in the contact list. It lets the user to
+    block a contact. May be overrided by the plugin.-->
+    <string name="menu_block_contact">"Заблокувати контакт"</string>
+    <!-- Screen menu item on the contact list screen to go to the blocked list
+    screen.-->
+    <string name="menu_view_blocked">"Заблоковані"</string>
+    <!-- Screen menu item on the contact list to go back to the landing page,
+    where you can choose which IM service you want to use-->
+    <string name="menu_view_accounts">"Список облікових записів"</string>
+    <!-- Screen menu item on the contact list to go to the setting page.-->
+    <string name="menu_settings">"Налаштування"</string>
+    <!-- Context/drop-down menu item for the contact list screen. The context menu is
+    displayed when the user long clicks on a contact in the contact list. It lets the user to
+    start a chat with a friend. May be overried by the plugin.-->
+    <string name="menu_start_chat">"Розпочати чат"</string>
+    <!-- Screen menu item on the contact list to sign out the service.-->
+    <string name="menu_sign_out">"Вийти"</string>
+    <!-- Context/drop-down menu item for the contact list screen. The context menu is
+    displayed when the user long clicks on a contact in the contact list. It lets the
+    user to view the contact's profile. May be overrided by the plugin.-->
+    <string name="menu_view_profile">"Переглянути профіль"</string>
+    <!-- Context/drop-down menu item for the contact list screen. The context menu is
+    displayed when the user long clicks on a conversation in the contact list. It lets the
+    user to end a chat with a contact. May be overrided by the plugin.-->
+    <string name="menu_end_conversation">"Закінчити чат"</string>
+
+    <!-- Chat screen menu and context menu items.-->
+    <!-- Screen menu item on the chat screen to go back the contact list screen.
+    May be overrided by the plugin.-->
+    <string name="menu_view_contact_list">"Список контактів"</string>
+    <!-- Screen menu item on the chat screen to invite another contact to join the chat.
+    Currently not supported.-->
+    <string name="menu_invite_contact">"Запросити\u2026"</string>
+    <!-- Screen menu item on the chat screen to open a chat dash board which lets the user to
+    switch between chats. May be overrided by the plugin.-->
+    <string name="menu_switch_chats">"Переключити чат"</string>
+    <!-- Screen menu item on the chat screen to insert smiley. May be overrided by the plugin.-->
+    <string name="menu_insert_smiley">"Вставити смайлик"</string>
+
+    <!-- This string is used in the chat dashboard.  When there is a shortcut assigned to a chat
+     it allows the user to press menu+[0-9] to quickly switch beteen chats.  This string of
+     menu+ is used to build up the UI to show the user which shortcut to use.  A number (0-9) will
+     be appended to the end of this.  -->
+    <string name="menu_plus">"Меню+"</string>
+
+    <!-- The title of a simple input dialog. Currently not used.-->
+    <string name="default_input_title">"Ввід"</string>
+
+    <!-- Strings for the confirm dialogs-->
+    <!-- The title of the confirm dialog which asks the user to continue or cancel an operation such as block a contact, remove a contact.-->
+    <string name="confirm">"Підтвердження"</string>
+    <!-- This is the message displayed in the confirm dialog that opens when user clicks to delete a contact in the contact list screen.-->
+    <string name="confirm_delete_contact">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" буде видалено."</string>
+    <!-- This is the message displayed in the confirm dialog that opens when user clicks to  block a contact in the contact list screen.-->
+    <string name="confirm_block_contact">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" буде заблоковано."</string>
+    <!-- This is the message displayed on the confirm dialog that opens when user clicks to unblock a contact in the blocked list screen.-->
+    <string name="confirm_unblock_contact">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" буде розблоковано."</string>
+    <!-- The "OK" button label for the error message dialog. -->
+    <string name="ok">OK</string>
+    <!-- The "Cancel" button label for the confirm dialogs. -->
+    <string name="cancel">"Відміна"</string>
+    <!-- The "OK" button label for the confirm dialogs. -->
+    <string name="yes">OK</string>
+    <!-- The "Cancel" button label for the confirm dialogs. -->
+    <string name="no">"Відміна"</string>
+
+    <!-- This is the toast message displayed when the user has been signed out of the service.-->
+    <string name="signed_out_prompt">"Виконано вихід із облікового запису <xliff:g id="account">%1$s</xliff:g>."</string>
+    <!-- This is the toast message displayed when the user has been signed out of the service due to an error.-->
+    <string name="signed_out_prompt_with_error">"Виконано вихід із облікового запису <xliff:g id="account">%1$s</xliff:g>, причина: <xliff:g id="reason">%2$s</xliff:g>."</string>
+
+    <!-- These strings displayed on the landing page. -->
+    <!-- The add account label on the landing page. This is displayed when the user hasn't setup an account of the IM service.-->
+    <string name="add_account">"Додати обліковий запис<xliff:g id="account">%1$s</xliff:g>"</string>
+
+    <!-- These strings are displayed on the account setup page. -->
+    <!-- The username label. May be overrided by the plugin.-->
+    <string name="label_username">"Ім\'я користувача:"</string>
+    <!-- The password label. -->
+    <string name="label_password">"Пароль:"</string>
+    <!-- The label for the checkbox which asks if the user wants to save the password on the client. -->
+    <string name="remember_password">"Запам\'ятати пароль."</string>
+    <!-- The label for the checkbox which asks if the user wants to sign in the account automatically when phone bootstrap. -->
+    <string name="keep_me_signed_in">"Входити автоматично."</string>
+    <!-- The label for the link which will bring up browser to let the user to sign up a new account when clicked. May be overrided by the plugin.-->
+    <string name="sign_up">"Немає\u2019 облікового запису?"</string>
+    <!-- This is the warning message displayed in a toast when "Sign me in automatically" is selected. May be overrided by the plugin.-->
+    <string name="check_auto_sign_in">"Автоматичний вхід при запускові додатку. Для того щоб відключити, виконайте вихід і зніміть галочку \"Входити автоматично\"."</string>
+    <!-- The button label which lets the user to sign into the IM service.  -->
+    <string name="sign_in">"Увійти"</string>
+
+    <!-- These strings are displayed the sign in progress screen.-->
+    <!-- The title of the sign-in progress screen.  -->
+    <string name="signing_in_to">"Вхід як <xliff:g id="account">%1$s</xliff:g>"</string>
+    <!-- This is the progress/status text displayed in the middle of the sign-in progress screen. -->
+    <string name="signing_in_wait">"Виконується вхід\u2026"</string>
+    <!-- Dialog title -->
+    <!-- This is the title for the background data prompt dialog, asking the user whether
+    to enable the background data if it is disabled when launch the IM app -->
+    <string name="bg_data_prompt_title">"Дані в фоновому режимі вимкнено"</string>
+    <!-- Dialog messages: -->
+    <!-- This is the message displayed in the prompt dialog when we launch IM but found
+    the background data is disabled -->
+    <string name="bg_data_prompt_message">
+        "<xliff:g id="provider">%1$s</xliff:g> потребує увімкнення фонового режиму даних."
+    </string>
+    <!-- Dialog buttons: -->
+    <!-- OK button for the prompt dialog -->
+    <string name="bg_data_prompt_ok">"Увімкнути"</string>
+    <!-- Cancel button for the prompt dialog -->
+    <string name="bg_data_prompt_cancel">"Вийти"</string>
+
+    <!-- These strings are displayed on the contact list page. -->
+    <!-- The title of the ongoing chat group. May be overrided by the plugin.-->
+    <string name="ongoing_conversation">"Відкрито чатів: <xliff:g id="number">%1$d</xliff:g>"</string>
+    <!-- Displays the number of online contacts in a list.-->
+    <string name="online_count">"<xliff:g id="number">%1$d</xliff:g> в мережі"</string>
+    <!-- The title of the subscription request group if there is any.-->
+    <string name="subscriptions">"Запрошення"</string>
+    <!-- Prefix of the contact if he/she is not in the user's list.-->
+    <string name="unknown_contact">"("<i>"Невідомий"</i>")"</string>
+    <!-- Displayed as a child item of the contact list if it's empty.-->
+    <string name="empty_contact_group">"Порожньо"</string>
+    <!-- Displayed as a child item of the ongoing chat group if it's empty. -->
+    <string name="empty_conversation_group">"Немає розмов"</string>
+
+    <!-- Strings for contacts picker activity to inviting a contact into a group chat. Currently not supported.-->
+    <string name="contacts_picker_title">"Вибрати контакт(и) для запрошення"</string>
+    <string name="contact_filter_hint">"Розпочніть ввід для пошуку контакту"</string>
+    <string name="empty_contact_list">"Контактів не знайдено."</string>
+
+    <!-- The title of blocked contact list.-->
+    <string name="blocked_list_title">"Заблоковані контакти – <xliff:g id="user">%1$s</xliff:g>"</string>
+    <!-- Displayed if there isn't any blocked contact.-->
+    <string name="no_blocked_contact">"Немає заблокованих контактів."</string>
+
+    <!-- These strings are displayed in the contact info dialog. -->
+    <!-- The title of the contact profile dialog. -->
+    <string name="contact_profile_title">"Профіль контакту"</string>
+    <!-- The label of the status on the contact profile dialog. -->
+    <string name="label_status">"Статус:"</string>
+    <!-- The label of the client type on the contact profile dialog. -->
+    <string name="label_client_type">"Тип клієнта:"</string>
+    <!-- The client type which indicates the contact is sign in with a PC client. -->
+    <string name="client_type_computer">"Комп\'ютер"</string>
+    <!-- The client type which indicates the contact is sign in with a mobile client. -->
+    <string name="client_type_mobile">"Мобільний"</string>
+
+    <!-- The contact presence status. May be overrided by the plugin. -->
+    <!-- This is an adjective describing the "online" status for the user. It appears in the
+    drop-down status menu on the Contact List screen -->
+    <string name="presence_available">"В мережі"</string>
+    <!-- This is an adjective describing the "busy" status for the user. It appears in the
+    drop-down status menu on the Contact List screen -->
+    <string name="presence_busy">"Зайнятий"</string>
+    <!-- This is an adjective describing the "away" status for the user. It appears in the
+    drop-down status menu on the Contact List screen -->
+    <string name="presence_away">"Немає на місці"</string>
+    <!-- This is an adjective describing the "idle" status for the user. It appears in the
+    drop-down status menu on the Contact List screen -->
+    <string name="presence_idle">"Не активний"</string>
+    <!-- This is an adjective describing the "offline" status for the user. It appears in the
+    drop-down status menu on the Contact List screen -->
+    <string name="presence_offline">"Не в мережі"</string>
+    <!-- This is an adjective describing the "invisible" status for the user. It appears in the
+    drop-down status menu on the Contact List screen -->
+    <string name="presence_invisible">"Невидимий"</string>
+
+    <!-- These strings are displayed on the connection setting activity. They are used for development only. Do not localize! -->
+    <string name="preference_title" translatable="false"><xliff:g id="provider">%1$s</xliff:g> settings (dev only)</string>
+    <string name="data_channel_label" translatable="false">Data channel</string>
+    <string name="data_encoding_label" translatable="false">Data encoding</string>
+    <string name="cir_channel_label" translatable="false">CIR channel</string>
+    <string name="host_label" translatable="false">Host</string>
+    <string name="msisdn_label" translatable="false">MSISDN</string>
+    <string name="http" translatable="false">HTTP</string>
+    <string name="sms" translatable="false">SMS</string>
+    <string name="tcp" translatable="false">TCP</string>
+    <string name="xml" translatable="false">XML</string>
+    <string name="wbxml" translatable="false">WBXML</string>
+    <string name="save" translatable="false">Save</string>
+
+    <!-- These strings are displayed on the chat screen -->
+    <!-- Chat screen title (i.e. Chat with Anne Clarkson) -->
+    <string name="chat_with">"Чат з: <xliff:g id="user">%1$s</xliff:g>"</string>
+    <!-- In the chat history list, this label is added before the chats the user typed -->
+    <string name="me">"Я"</string>
+    <!-- On the chat screen, this is the hint text in the input field where the user enters the
+    chat. This needs to fit in both portrait and landscape mode -->
+    <string name="compose_hint">"Введіть текст"</string>    
+    <!-- Inline status message in the chat history list, when receiving a "online" status update. -->
+    <string name="contact_online">"<xliff:g id="user">%1$s</xliff:g> в мережі"</string>
+    <!-- Inline status message in the chat history list, when receiving an "away" status update. -->
+    <string name="contact_away">"<xliff:g id="user">%1$s</xliff:g> відсутній"</string>
+    <!-- Inline status message in the chat history list, when receiving a "busy" status update. -->
+    <string name="contact_busy">"<xliff:g id="user">%1$s</xliff:g> зайнятий"</string>
+    <!-- Inline status message in the chat history list, when receiving a "offline" status update. -->
+    <string name="contact_offline">"<xliff:g id="user">%1$s</xliff:g> не в мережі"</string>
+    <!-- Inline status message in the chat history list, when a friend joined the chat. -->
+    <string name="contact_joined">"<xliff:g id="user">%1$s</xliff:g> увійшов"</string>
+    <!-- Inline status message in the chat history list, when a friend left the chat. -->
+    <string name="contact_left">"<xliff:g id="user">%1$s</xliff:g> вийшов"</string>
+    <!-- Inline time stamp status in the chat history list. The timestamp formatting maybe different for different locales.-->
+    <string name="time_stamp" format="date">"\'Надіслано о \'<xliff:g id="hour">год.</xliff:g><xliff:g id="minute">хв.</xliff:g> <xliff:g id="ampm"></xliff:g>, <xliff:g id="date">EEEE</xliff:g>"</string>
+    <!-- The send button on the chat screen. -->
+    <string name="send">"Надіслати"</string>
+    <!-- Error message when a chat failed to be sent.-->
+    <string name="msg_sent_failed">"Не вдалося надіслати повідомлення."</string>
+    <!-- Warning message displayed in the chat screen when connection is lost.-->
+    <string name="disconnected_warning">"Підключення до серверу перервано. Повідомлення будуть надіслані при підключенні до Інтернету."</string>
+    <!-- Warning message displayed in the chat screen when the contact is offline.-->
+    <string name="contact_offline_warning">"<xliff:g id="user">%1$s</xliff:g> не в мережі. Повідомлення будуть доставлені, коли <xliff:g id="user">%1$s</xliff:g> увійде в мережу."</string>
+    <!-- Warning message displayed in the chat screen when the contact is not in the user's list.-->
+    <string name="contact_not_in_list_warning">"<xliff:g id="user">%1$s</xliff:g> не у вашому списку контактів."</string>
+    <!-- The menu of links brought up when the user clicks on a chat history item, if there are any.-->
+    <string name="select_link_title">"Оберіть посилання"</string>
+    <!-- Displayed when there is no active chats in the chat dashboard.-->
+    <string name="empty_chat_list">"Немає активних чатів."</string>
+
+    <!-- Add contact screen -->
+    <!-- This is the title of the Add Contact Screen. -->
+    <string name="add_contact_title">"Додати контакт"</string>
+    <!-- The label of the email input box on the Add Contact Screen. -->
+    <string name="input_contact_label">"Адреса електронної пошти запрошуваного:"</string>
+    <!-- The label of the list spinner on the Add Contact Screen. -->
+    <string name="choose_list_label">"Оберіть список:"</string>
+    <!-- This is an instruction message displayed under the input box on the Add Contact Screen.  -->
+    <string name="invite_instruction">"Введіть ім\'я для додавання з контактів."</string>
+    <!-- The label of the button on the Add Contact Screen to send the invitation. -->
+    <string name="invite_label">"Надіслати запрошення"</string>
+
+    <!-- setting screen. A title is the name of the setting; a summary is displayed in smaller text below the title. -->
+    <string name="setting_title">"Загальні налаштування"</string>
+    <string name="hide_offline_contacts">"Не показувати тих, хто не в мережі"</string>
+    <!-- This is a subtitle for the "Notification settings"  in the Setting screen. -->
+    <string name="notification_group_title">"Налаштування сповіщень"</string>
+    <!-- This is the text label of the setting for IM notifications; a summary is displayed in
+    smaller text below this label -->
+    <string name="notification_enabled_title">"Сповіщення для миттєвих повідомлень"</string>
+    <!-- This is the summary of the setting for IM notifications -->
+    <string name="notification_enabled_summary">"Сповіщати про нові повідомлення у стрічці статусу"</string>
+    <!-- This is the text label of the vibrate notification setting; a summary is displayed in
+    smaller text below this label -->
+    <string name="notification_vibrate_title">"Вібросигнал"</string>
+    <!-- This is the summary of the vibrate notification setting-->
+    <string name="notification_vibrate_summary">"Вібросигнал при отриманні повідомлення в чаті"</string>
+    <!-- This is the text label of the sound notification setting; a summary is displayed in
+    smaller text below this label -->
+    <string name="notification_sound_title">"Звук"</string>
+    <!-- This is the summary of the vibrate notification setting-->
+    <string name="notification_sound_summary">"Відтворювати мелодію при отриманні повідомлення в чаті"</string>
+    <!-- This is the text label selecting the ringtone. Clicking on this will take the user to
+    the ringtone picker -->
+    <string name="notification_ringtone_title">"Вибрати мелодію повідомлення"</string>
+
+    <!-- Group chat invitation screen (Currently not used.) -->
+    <!-- The prompt message displayed on the group chat invitation screen.-->
+    <string name="invitation_prompt">"<xliff:g id="user">%1$s</xliff:g> запрошує вас в груповий чат."</string>
+    <!-- Toast when group chat invitation has been sent to the contact.-->
+    <string name="invitation_sent_prompt">"Запрошення відправлено користувачеві <xliff:g id="user">%1$s</xliff:g>."</string>
+    <!-- The button for accepting an invitation.-->
+    <string name="accept_invitation">"Прийняти"</string>
+    <!-- The button for decline an invitation.-->
+    <string name="decline_invitation">"Відхилити"</string>
+
+    <!-- Friend subscription screen -->
+    <string name="subscription_prompt">"<xliff:g id="user">%1$s</xliff:g> запросив вас у свій список контактів."</string>
+    <!-- The button for approving a subscription request.-->
+    <string name="approve_subscription">"Прийняти"</string>
+    <!-- The button for delecling a subscription request.-->
+    <string name="decline_subscription">"Відхилити"</string>
+    <!-- Toast when approve a subscription request failed.-->
+    <string name="approve_subscription_error">"Неможливо прийняти підписку користувача <xliff:g id="user">%1$s</xliff:g>. Повторіть спробу пізніше."</string>
+    <!-- Toast when decline a subscription request failed.-->
+    <string name="decline_subscription_error">"Неможливо відхилити підписку користувача <xliff:g id="user">%1$s</xliff:g>. Повторіть спробу пізніше."</string>
+    <!-- Notification bar messages -->
+    <!-- This is the notification bar message when a new IM arrives. -->
+    <string name="newMessages_label">"<xliff:g id="provider">%1$s</xliff:g> нових повідомлень"</string>
+    <!-- This is the notification bar message when new IMs comes from more than one contact. -->
+    <string name="num_unread_chats">
+        "<xliff:g id="number">%1$d</xliff:g> непрочитаних чатів"
+    </string>
+    <!-- This is the notification bar message when an invitation from someone arrived. -->
+    <string name="subscription_notify_text">
+        "Пропозиція дружби від користувача <xliff:g id="user">%s</xliff:g>"
+    </string>
+    <!-- This is the notification bar message when an invitation to join a group chat from someone arrived. Currently not used. -->
+    <string name="notify_groupchat_label">"Запрошення в груповий чат"</string>
+    <!-- This is the text label of the group chat invitation message in the notification. Currently not used. -->
+    <string name="group_chat_invite_notify_text">
+        "Нове запрошення в груповий чат від користувача<xliff:g id="user">%s</xliff:g>"
+    </string>
+
+    <!-- Toast when a contact is added into a list.-->
+    <string name="add_contact_success">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" додано."</string>
+    <!-- Toast when a contact is deleted from the list.-->
+    <string name="delete_contact_success">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" видалено."</string>
+    <!-- Toast when a contact is blocked.-->
+    <string name="block_contact_success">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" заблоковано."</string>
+    <!-- Toast when a contact is unblocked.-->
+    <string name="unblock_contact_success">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" розблоковано."</string>
+
+
+    <!-- IM service permission -->
+    <string name="perm_label">"запуск служби миттєвих повідомлень"</string>
+    <string name="perm_desc">"Дозволяє додаткам при необхідності запустити службу чату."</string>
+
+    <!-- Errors-->
+    <!-- The title of the error dialog -->
+    <string name="error">"Увага"</string>
+    <!-- Error message for sign in failed.-->
+    <string name="login_service_failed">"Не вдалося увійти в службу <xliff:g id="service">%1$s</xliff:g>. Повторіть спробу пізніше.\n(Детальніше: <xliff:g id="description">%2$s</xliff:g>)"</string>
+    <!-- Error message for creating contact list failed.-->
+    <string name="add_list_failed">"Список не було додано."</string>
+    <!-- Error message for blocking contact failed.-->
+    <string name="block_contact_failed">"Контакт не було заблоковано."</string>
+    <!-- Error message for unblocking contact failed.-->
+    <string name="unblock_contact_failed">"Контакт не було розблоковано."</string>
+    <!-- Error message for when the user didn't select a contact as required.-->
+    <string name="select_contact">"Спочатку виберіть контакт."</string>
+    <!-- Error message for when the current connection disconnected.-->
+    <string name="disconnected">"Підключення перервано!"\n</string>
+    <!-- Error message for when the IM service has died.-->
+    <string name="service_error">"Помилка служби!"</string>
+    <!-- Error message for loading contact list failed.-->
+    <string name="load_contact_list_failed">"Список контактів не завантажено."</string>
+    <!-- Error message for failed to connect to the server.-->
+    <string name="cant_connect_to_server">"Не вдається підключитися до серверу. Перевірте підключення."</string>
+    <!-- Error message for when the contact is already in the list.-->
+    <string name="contact_already_exist">"\"<xliff:g id="user">%1$s</xliff:g>\" вже є у вашому списку контактів."</string>
+    <!-- Error message for when the contact is blocked. -->
+    <string name="contact_blocked">"Контакт \"<xliff:g id="user">%1$s</xliff:g>\" заблоковано."</string>
+    <!-- Error message for when the contact list is not compeletely loaded.-->
+    <string name="contact_not_loaded">"Будь ласка зачекайте, триває завантаження списку контактів."</string>
+    <!-- Error message for when a network error occurred.-->
+    <string name="network_error">"Виникла помилка в мережі."</string>
+    <!-- Error message for lack of server support error.-->
+    <string name="service_not_support">"Сервер не підтримує дану функцію."</string>
+    <!-- Erorr message for bad password error.-->
+    <string name="invalid_password">"Вказаний пароль недійсний."</string>
+    <!-- Error message for server internal error.-->
+    <string name="internal_server_error">"На сервері виникла помилка."</string>
+    <!-- Error message for when the server does not implement the feature. -->
+    <string name="not_implemented">"Сервер не підтримує дану функцію."</string>
+    <!-- Error message for server not available error.-->
+    <string name="service_unavaiable">"Сервер на даний момент недоступний."</string>
+    <!-- Error message for timeout error.-->
+    <string name="timeout">"Тайм-аут серверу."</string>
+    <!-- Error message for when the server does not support the current protocol version.-->
+    <string name="version_not_supported">"Сервер не підтримує дану версію."</string>
+    <!-- Error message for when the message queue on the server is full.-->
+    <string name="message_queue_full">"Черга повідомлень повна."</string>
+    <!-- Error message for when the domain is not supported by the server.-->
+    <string name="domain_not_supported">"Сервер не підтримує пересилання домену."</string>
+    <!-- Error message for a bad username error.-->
+    <string name="unknown_user">"Вказане ім\'я користувача не розпізнано."</string>
+    <!-- Error message for when the user is blocked by the recipient.-->
+    <string name="recipient_blocked_the_user">"На жаль, цей користувач вас заблокував."</string>
+    <!-- Error message for session expired error.-->
+    <string name="session_expired">"Сеанс застарів, будь ласка увійдіть знову."</string>
+    <!-- forced_logout and already_logged_in are used within another sentence so y is not capped. -->
+    <string name="forced_logout">"ви увійшли від імені іншого клієнта."</string>
+    <string name="already_logged_in">"ви вже увійшли від імені іншого клієнта."</string>
+    <!-- Error message for msisdn error.-->
+    <string name="msisdn_error">"На жаль, не вдається зчитати телефонний номер з SIM-карти. Зверніться за довідкою до свого оператора."</string>
+    <!-- Error message for when the user is not signed in.-->
+    <string name="not_signed_in">"Ви поки що не здійснили вхід."</string>
+    <!-- Generic error.-->
+    <string name="general_error">"Код помилки <xliff:g id="code">%1$d</xliff:g>"</string>
+
+    <!-- Smiley names. May be overrided by the plugin. -->
+    <string-array name="default_smiley_names">
+        <item>"Щастя"</item>
+        <item>"Сумно"</item>
+        <item>"Підморгую"</item>
+        <item>"Висунутий язик"</item>
+        <item>"Здивування"</item>
+        <item>"Цілую"</item>
+        <item>"Кричу"</item>
+        <item>"Круто"</item>
+        <item>"Знаю, що говорю"</item>
+        <item>"Мовчу"</item>
+        <item>"Засоромлений"</item>
+        <item>"Ангел"</item>
+        <item>"Сумніваючись"</item>
+        <item>"Плачу"</item>
+        <item>"Нікому не скажу"</item>
+        <item>"Смішно"</item>
+        <item>"Розгублений"</item>
+    </string-array>
+    <!-- Do not localize! Smiley text representations. May be overrided by the plugin. -->
+    <string-array name="default_smiley_texts" translatable="false">
+        <item>:-)</item>
+        <item>:-(</item>
+        <item>;-)</item>
+        <item>:-P</item>
+        <item>=-O</item>
+        <item>:-*</item>
+        <item>:O</item>
+        <item>B-)</item>
+        <item>:-$</item>
+        <item>:-!</item>
+        <item>:-[</item>
+        <item>O:-)</item>
+        <item>:-\\</item>
+        <item>:\'(</item>
+        <item>:-X</item>
+        <item>:-D</item>
+        <item>o_O</item>
+    </string-array>
+</resources>

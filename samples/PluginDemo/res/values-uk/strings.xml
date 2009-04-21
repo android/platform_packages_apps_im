@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2008 Esmertec Inc.
+ * Copyright (C) 2008 The Android Open Source Project
+
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="menu_add_contact">"Додати контакт"</string>
+    <string name="menu_remove_contact">"Видалити контакт"</string>
+    <string name="menu_block_contact">"Заблокувати контакт"</string>
+    <string name="menu_contact_list">"Список контактів"</string>
+    <string name="menu_start_chat">"Розпочати чат"</string>
+    <string name="menu_view_profile">"Переглянути профіль"</string>
+    <string name="menu_end_conversation">"Закінчити чат"</string>
+    <string name="menu_switch_chats">"Переключити чат"</string>
+    <string name="menu_insert_smiley">"Вставити смайлик"</string>
+    <string name="sign_up">"Отримати новий обліковий запис"</string>
+    <string name="check_save_password">"Задля безпеки, якщо ви загубили телефон або його викрали, перейдіть на веб сторінку з комп\'ютера та змініть пароль."</string>
+    <string name="buddy_list_title">"Список контактів - <xliff:g id="username">%1$s</xliff:g>"</string>
+    <string name="label_username">"Ім\'я користувача:"</string>
+    <string name="ongoing_conversation">"Розмови (<xliff:g id="number">%1$d</xliff:g>)"</string>
+    <string name="contact_profile_title">"Інформація про контакт"</string>
+    <string name="presence_available">"Доступний"</string>
+    <string name="add_contact_title">"Додати контакт"</string>
+    <string name="input_contact_label">"Нік особи яку ви бажаєте додати:"</string>
+    <string name="invite_label">"Запросити друга"</string>
+
+    <string-array name="smiley_names">
+        <item>"Щастя"</item>
+        <item>"Сумно"</item>
+        <item>"Підморгую"</item>
+        <item>"Висунутий язик"</item>
+        <item>"Здивування"</item>
+        <item>"Цілую"</item>
+        <item>"Кричу"</item>
+        <item>"Круто"</item>
+        <item>"Знаю, що говорю"</item>
+        <item>"Мовчу"</item>
+        <item>"Засоромлений"</item>
+        <item>"Ангел"</item>
+        <item>"Сумніваючись"</item>
+        <item>"Плачу"</item>
+        <item>"Нікому не скажу"</item>
+        <item>"Смішно"</item>
+        <item>"Розгублений"</item>
+    </string-array>
+
+    <string-array name="smiley_texts">
+        <item>:-)</item>
+        <item>:-(</item>
+        <item>;-)</item>
+        <item>:-P</item>
+        <item>=-O</item>
+        <item>:-*</item>
+        <item>:O</item>
+        <item>B-)</item>
+        <item>:-$</item>
+        <item>:-!</item>
+        <item>:-[</item>
+        <item>O:-)</item>
+        <item>:-\\</item>
+        <item>:\'(</item>
+        <item>:-X</item>
+        <item>:-D</item>
+        <item>o_O</item>
+    </string-array>
+</resources>
